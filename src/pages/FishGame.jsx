@@ -35,6 +35,7 @@ function FishGame() {
   };
   const handleFishClick = () => {
     dispatch(addScore(2)); // 每次點擊 +2 分
+    setClickCount((prev) => prev + 1); // 點擊次數 +1
   };
 
   return (
@@ -49,7 +50,7 @@ function FishGame() {
       <UpgradePanel
         score={score}               // Redux來的
         upgrades={upgrades}
-        setUpgrades={setUpgrades}
+        // setUpgrades={setUpgrades}
       />
 
     </div>

@@ -1,16 +1,16 @@
 // 卡片
-function UpgradePanel({ score, setScore, upgrades, setUpgrades }) {
-    const handleBuy = (id, cost) => {
+import {useDispatch} from 'react-redux'
+import { addScore } from '../redux/scoreSlice';
+
+function UpgradePanel({ score, upgrades, setUpgrades }) {
+  const dispatch =useDispatch();
+    const handleBuy = (cost,name) => {
       if (score < cost) return alert("點數不足！");
-  
       // 扣分數
-      setScore(score - cost);
-  
-      // 更新 purchased 狀態
-      const updated = upgrades.map((item) =>
-        item.id === id ? { ...item, purchased: true } : item
-      );
-      setUpgrades(updated);
+      dispatch(addScore(-cost));
+
+      alert(`你購買了${name}`);
+ 
     };
   
     return (
@@ -22,16 +22,16 @@ function UpgradePanel({ score, setScore, upgrades, setUpgrades }) {
               item.purchased ? "bg-gray-300 text-gray-500" : "bg-white"
             }`}
           >
-            <p className="text-lg font-bold">{item.name}</p>
-            <p className="text-sm">{item.effect}</p>
+            <p className="text-lg font-bold text-black">{item.name}</p>
+            <p className="text-sm text-black">{item.effect}</p>
             <p className="my-2 text-blue-700">💎 花費：{item.cost}</p>
   
             <button
-              disabled={item.purchased || score < item.cost}
-              onClick={() => handleBuy(item.id, item.cost)}
+              disabled={score < item.cost}
+              onClick={() => handleBuy(item.id, item.cost,item.name)}
               className="btn btn-sm btn-primary w-full"
             >
-              {item.purchased ? "已購買" : "購買"}
+              購買
             </button>
           </div>
         ))}
