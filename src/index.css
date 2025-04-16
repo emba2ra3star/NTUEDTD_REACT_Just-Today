@@ -1,2 +1,21 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
+.main_layout {
+    display: grid;
+    min-height: 100vh;
+    grid-template-areas:
+        'content'
+        'footer'
+    ;
+    grid-template-rows: 1fr auto;
+    gap: 1rem;
+}
+
+.content {
+    grid-area: content;
+}
+
+.footer {
+    grid-area: footer;
+}
