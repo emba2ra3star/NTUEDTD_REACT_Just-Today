@@ -1,6 +1,8 @@
+import { Link } from "react-router";
+
 function BoardTodoList() {
     return (
-        <div className="h-[100%] px-[2rem] py-[1rem] bg-base-100 border-1 rounded-lg border-base-content">
+        <Link to={"/TodoList"} className="h-[100%] px-[2rem] py-[1rem] bg-base-100 border-1 rounded-lg border-base-content">
             <span>代辦事項</span>
             <section className="grid gap-[1rem]">
                 <div>
@@ -11,7 +13,7 @@ function BoardTodoList() {
                     <div className="divider my-0"></div>
                 </div>
             </section>
-        </div>
+        </Link>
     );
 }
 
