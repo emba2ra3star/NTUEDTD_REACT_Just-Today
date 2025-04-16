@@ -3,7 +3,7 @@ function AddTodayItem() {
         <>
             <div className="flex flex-row h-fit px-[2rem] py-[1rem] items-center justify-between gap-[1rem] bg-base-100  border-1 rounded-lg border-base-content">
                 {/* 送出按鈕 */}
-                <input type="checkbox" defaultChecked className="mt-[1.5rem] checkbox border-base-content bg-base-100 checked:bg-base-content checked:text-base-100 checked:border-base-100 " />
+                <input type="checkbox" className="mt-[1.5rem] checkbox border-base-content bg-base-100 checked:bg-base-content checked:text-base-100 checked:border-base-100 " />
                 {/* 事項名稱 */}
                 <div className="w-[100%] flex flex-col">
                     <span>事項名稱</span>
