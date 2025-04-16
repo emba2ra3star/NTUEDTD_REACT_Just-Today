@@ -19,3 +19,7 @@
 .footer {
     grid-area: footer;
 }
+body {
+    margin: 0;
+  }
+  

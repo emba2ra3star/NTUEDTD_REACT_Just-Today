@@ -1,9 +1,8 @@
 export default function TaskFormPage() {
     return (
-      <div className="flex bg-green-100 min-h-screen p-8">
+      <div className="flex flex-col md:flex-row justify-center bg-green-100 min-h-screen p-8">
         {/* 左半部：表單 */}
         <div className="w-1/2 pr-6">
-          <button>←</button>
           <h2 className="text-xl font-bold">事項名稱</h2>
           {/* 各個欄位放這 */}
         </div>

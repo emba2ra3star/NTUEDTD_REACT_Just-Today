@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Header({ title }) {
-  const [isHidden, setIsHidden] = useState(false); // ✅ 拼字修正
+  const [isHidden, setIsHidden] = useState(false); 
   const [prevScrollY, setPrevScrollY] = useState(0);
 
   useEffect(() => {
