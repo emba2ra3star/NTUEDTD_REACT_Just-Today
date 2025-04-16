@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { addScore, resetScore } from '../redux/scoreSlice';
+
 import ScoreBar from "../components/ScoreBar";
 import { useState, useEffect } from "react";
 import ClickHint from "../components/ClickHint";
@@ -7,7 +10,8 @@ import UpgradePanel from '../components/UpgradePanel';
 
 
 function FishGame() {
-  const [score, setScore] = useState(0);
+  const score = useSelector((state) => state.score.value);
+  const dispatch = useDispatch();
   const [clickCount, setClickCount] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [upgrades, setUpgrades] = useState([
@@ -30,21 +34,24 @@ function FishGame() {
     return `00 : ${min} : ${s}`;
   };
   const handleFishClick = () => {
-    setClickCount((prev) => prev + 1);
-    setScore((prev) => prev + 2); // 每次點擊 +2 分
+    dispatch(addScore(2)); // 每次點擊 +2 分
   };
 
   return (
     <div className="pt-16 px-4 bg-cover min-h-screen">
-      <ScoreBar score={score} clickCount={clickCount} time={formatTime(seconds)} />
+      <ScoreBar
+        score={score}               // Redux來的
+        clickCount={clickCount}     // local state
+        time={formatTime(seconds)}  // local計時器
+      />
       <ClickHint text="點擊跳動 🐟" />
       <FishDisplay onClickFish={handleFishClick} />
       <UpgradePanel
-        score={score}
-        setScore={setScore}
+        score={score}               // Redux來的
         upgrades={upgrades}
         setUpgrades={setUpgrades}
-        />
+      />
+
     </div>
   );
 }
