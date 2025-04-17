@@ -12,11 +12,11 @@ function FishDisplay({ onClickFish }) {
   return (
     <div className="flex justify-center items-center gap-12 my-8">
       {/* 靜止的左邊魚 */}
-      <img src="src\images\fish1.png" alt="魚魚" className="w-48" />
+      <img src="\fish1.png" alt="魚魚" className="w-48" />
 
       {/* 可點擊的右邊魚 */}
       <img
-        src="src\images\fish2.png"
+        src="\fish2.png"
         alt="點擊魚"
         onClick={handleClick}
         className={`w-72 cursor-pointer transition-transform duration-150 ${
