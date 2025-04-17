@@ -1,65 +1,50 @@
-import { SquareMinus, SquarePlus } from "lucide-react";
+import { Coffee, ConciergeBell, Dot, Pickaxe, SquareMinus, SquarePlus } from "lucide-react";
 import { useState } from "react";
 import ClockTimer from "./ClockTimer";
 
 
 function ClockFace() {
-    const [counter, setCounter] = useState(25);
-    return (
-        <div className="tabs tabs-lift">
-            {/* 專注時間 */}
-            <label className="tab">
-                <input type="radio" name="my_tabs_4" defaultChecked />
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" /></svg>
-                專注時間
-            </label>
+    const tabList = [
+        { label: "專注時間", icon: <Pickaxe className="size-4 me-2" />, minHand: 25, secHand: 0,note:"設定一個單位的工作時長" },
+        { label: "小休息", icon: <Coffee className="size-4 me-2" />, minHand: 5, secHand: 0,note:"設定一個單位的間歇休息時長" },
+        { label: "大休息", icon: <ConciergeBell className="size-4 me-2" />, minHand: 15, secHand: 0,note:"設定回合結束後的休息時長" },
+    ];
+    const [activeTab, setActiveTab] = useState(0);
 
-            <div className="tab-content bg-base-300 border-base-300">
-                <div className="flex flex-row justify-center items-center">
-                    <div>
-                        <SquarePlus />
-                        <SquareMinus />
+    return (
+        <div>
+            {/* 標籤列 */}
+            <div className=" mt-[0.5rem] tabs tabs-lift flex flex-row justify-between items-center">
+                <div>
+                    {tabList.map((tab, index) => (
+                        <button
+                            key={index}
+                            className={`tab ${activeTab === index ? "tab-active" : ""} text-[20px]`}
+                            onClick={() => setActiveTab(index)}
+                        >
+                            {tab.icon}
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+                <p className="hidden md:block items-end text-[1rem]">{tabList[activeTab].note}</p>
+            </div>
+
+            {/* 內容區塊 */}
+            <div className="bg-base-300 border border-base-300 rounded-box p-4">
+                <div className="flex flex-cols justify-center items-center gap-[3rem]">
+                    <div className="justify-center grid grid-rows-2 gap-2 items-center">
+                        <SquarePlus size={"48px"} color="#8FE189" />
+                        <SquareMinus size={"48px"} color="#8FE189" />
                     </div>
-                    <ClockTimer val={counter}/>
-                    <span>:</span>
-                    <ClockTimer val={0}/>
+                    <div className="grid grid-cols-5 justify-center items-center text-[96px] mr-[102px]">
+                        <ClockTimer val={tabList[activeTab].minHand} textSize={96} />
+                        <span className="col-span-1 mx-2">:</span>
+                        <ClockTimer val={tabList[activeTab].secHand} textSize={96} />
+                    </div>
                 </div>
             </div>
-            {/* 小休息 */}
-            <label className="tab">
-                <input type="radio" name="my_tabs_4"/>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" /></svg>
-                小休息
-            </label>
-            <div className="tab-content bg-base-300 border-base-300">
-                <div className="flex flex-row justify-center items-center">
-                    <div>
-                        <SquarePlus />
-                        <SquareMinus />
-                    </div>
-                    <ClockTimer val={5}/>
-                    <span>:</span>
-                    <ClockTimer val={0}/>
-                </div>
-            </div>
-            {/* 大休息 */}
-            <label className="tab">
-                <input type="radio" name="my_tabs_4" />
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 me-2"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
-                大休息
-            </label>
-            <div className="tab-content bg-base-300 border-base-300">
-                <div className="flex flex-row justify-center items-center">
-                    <div>
-                        <SquarePlus />
-                        <SquareMinus />
-                    </div>
-                    <ClockTimer val={15}/>
-                    <span>:</span>
-                    <ClockTimer val={0}/>
-                </div>
-            </div>
-        </div >
+        </div>
     );
 }
 
