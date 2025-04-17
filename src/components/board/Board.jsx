@@ -2,13 +2,25 @@ import { Link } from "react-router";
 
 import BoardPomodoro from "./BoardPomodoro";
 import TodayList from "./TodayList";
+import { useState } from "react";
 
 function Board() {
+    const [tasks,setTasks]=useState(
+        [{
+            id:1,
+            title:"完成英文雜誌文章學習一篇",
+            startTime:"9:00",
+            endTime:"10:00",
+            isDone:false,
+        },]
+    );
+
     return (
         <div className="content pt-[3rem] h-full">
             <div className="flex flex-row mx-[5%] gap-[35px] h-full">
                 {/* 左欄 */}
-                <TodayList />
+                <TodayList data={tasks} />
+
                 {/* 右欄 */}
                 <div className="w-3/5 flex flex-col gap-[1rem]">
                     {/* 輸入工作 */}
