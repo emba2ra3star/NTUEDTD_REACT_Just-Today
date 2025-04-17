@@ -2,7 +2,7 @@
 import {useDispatch} from 'react-redux'
 import { addScore } from '../redux/scoreSlice';
 
-function UpgradePanel({ score, upgrades, setUpgrades }) {
+function UpgradePanel({ score, upgrades}) {
   const dispatch =useDispatch();
     const handleBuy = (cost,name) => {
       if (score < cost) return alert("點數不足！");
@@ -28,7 +28,7 @@ function UpgradePanel({ score, upgrades, setUpgrades }) {
   
             <button
               disabled={score < item.cost}
-              onClick={() => handleBuy(item.id, item.cost,item.name)}
+              onClick={() => handleBuy(item.cost, item.name)}
               className="btn btn-sm btn-primary w-full"
             >
               購買

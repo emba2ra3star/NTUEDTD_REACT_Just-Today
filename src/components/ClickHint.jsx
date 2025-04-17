@@ -2,7 +2,7 @@
 
 function ClickHint({ text = "點擊跳動 🐟" }) {
     return (
-      <h2 className="text-center text-xl font-bold my-4 text-black drop-shadow">
+      <h2 className="text-center text-xl font-bold my-4 drop-shadow">
         {text}
       </h2>
     );
