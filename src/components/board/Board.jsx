@@ -1,7 +1,8 @@
+import { Link } from "react-router";
+
 import AddTodayItem from "./AddTodayItem";
 import BoardPomodoro from "./BoardPomodoro";
 import BoardTodoList from "./BoardTodoList";
-import Pond from "./Pond";
 import TodayList from "./TodayList";
 
 function Board() {
@@ -28,3 +29,13 @@ function Board() {
 }
 
 export default Board;
+
+function Pond() {
+    return (
+        <>
+            <Link to="/fishgame" className="w-[30%] px-[2rem] py-[1rem] flex justify-center items-center bg-base-100 border-1 rounded-lg border-base-content">
+                <p>魚塘</p>
+            </Link>
+        </>
+    );
+}
