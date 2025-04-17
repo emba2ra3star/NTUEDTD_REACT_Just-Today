@@ -41,7 +41,7 @@ function FormSection() {
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="textarea textarea-bordered w-full text-white"
+          className="textarea textarea-bordered w-full"
           rows="4"
           placeholder="請輸入詳細內容（選填）"
         />
@@ -53,7 +53,7 @@ function FormSection() {
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className="input input-bordered w-full text-white"
+          className="input input-bordered w-full "
         />
       </div>
 
@@ -63,7 +63,7 @@ function FormSection() {
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          className="input input-bordered w-full text-white"
+          className="input input-bordered w-full"
         />
       </div>
 
@@ -74,7 +74,7 @@ function FormSection() {
             type="text"
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
-            className="input input-bordered flex-grow text-white"
+            className="input input-bordered flex-grow"
             placeholder="輸入標籤名稱"
           />
           <button type="button" onClick={handleAddTag} className="btn btn-outline">
