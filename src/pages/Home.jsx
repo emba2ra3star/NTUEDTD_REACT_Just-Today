@@ -10,7 +10,7 @@ function Home() {
                 <title>Just Today | 首頁</title>
             </Helmet>
             <Board />            
-            <div className="footer">footer</div>
+            <div className="footer bg-base-100">footer</div>
         </div>
     );
 }
