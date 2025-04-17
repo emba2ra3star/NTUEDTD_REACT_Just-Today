@@ -26,7 +26,7 @@ function Pomodoro() {
                 <ProgressBars />
 
             </div>
-            <div className="footer">footer</div>
+            <div className="footer"> </div>
         </div >
     );
 }

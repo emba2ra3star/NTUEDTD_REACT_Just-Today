@@ -16,9 +16,9 @@ function BoardPomodoro() {
     }, [counter]);
 
     return (
-        <Link to={"/Pomodoro"} className="w-[70%]">
-            <div className="px-[2rem] py-[1rem] flex flex-row bg-base-100 border-1 rounded-lg border-base-content">
-                <div className="min-w-[178px] max-h-[178px] flex flex-row justify-center items-center bg-base-300 rounded-full">
+        <Link to={"/Pomodoro"} className="sm:w-[70%]">
+            <div className="px-[2rem] py-[1rem] flex flex-col sm:flex-row justify-center items-center bg-base-100 border-1 rounded-lg border-base-content">
+                <div className="w-[178px] h-[178px] mb-2 flex flex-row justify-center items-center bg-base-300 rounded-full">
                     <span className="countdown font-mono text-[48px] mr-[1.5rem]">
                         <span className="text-[48px]" style={{ "--value": counter } /* as React.CSSProperties */} aria-live="polite" aria-label={counter}></span>
                     </span>
@@ -26,11 +26,13 @@ function BoardPomodoro() {
                         <p className="absolute left-[-1rem] text-nowrap text-[20px]">分鐘</p>
                     </div>
                 </div>
-                <div className="w-3/5 flex flex-col items-end text-[20px]">
-                    <span className="text-[32px]">番茄鐘</span>
-                    <p>現在時間</p>
-                    <p>2000 年 00 月 00 日</p>
-                    <p>00 : 00</p>
+                <div className="sm:w-3/5 flex flex-col items-center sm:items-end text-[14px] sm:text-[20px]">
+                    <span className="text-[20px] sm:text-[32px]">番茄鐘</span>
+                    <div className="flex flex-row gap-2 sm:flex-col sm:gap-0 sm:items-end">
+                        <p>現在時間</p>
+                        <p>2000 年 00 月 00 日</p>
+                        <p>00 : 00</p>
+                    </div>
                     <button className="btn">開始專注</button>
                 </div>
             </div>

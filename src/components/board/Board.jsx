@@ -5,31 +5,23 @@ import TodayList from "./TodayList";
 import { useState } from "react";
 
 function Board() {
-    const [tasks, setTasks] = useState(
-        [{
-            id: 1,
-            title: "完成英文雜誌文章學習一篇",
-            startTime: "9:00",
-            endTime: "10:00",
-            isDone: false,
-        },]
-    );
+    const [tasks, setTasks] = useState([]);
     const onAddTask = (task) => {
         setTasks((prevTasks) => [...prevTasks, task]);
     }
 
     return (
         <div className="content pt-[3rem] h-full">
-            <div className="flex flex-row mx-[5%] gap-[35px] h-full">
+            <div className="flex flex-col lg:flex-row mx-[5%] gap-[35px] h-full">
                 {/* 左欄 */}
                 <TodayList data={tasks} />
 
                 {/* 右欄 */}
-                <div className="w-3/5 flex flex-col gap-[1rem]">
+                <div className="w-fill lg:w-3/5 flex flex-col gap-[1rem]">
                     {/* 輸入工作 */}
                     <AddTodayItem onAddTask={onAddTask}/>
                     {/* 魚塘與番茄鐘 */}
-                    <div className="flex flex-row gap-[1rem] h-fit">
+                    <div className="flex flex-col sm:flex-row gap-[1rem] h-fit">
                         <Pond />
                         <BoardPomodoro />
                     </div>
@@ -62,7 +54,7 @@ function AddTodayItem({ onAddTask }) {
             <div className="list-row">
                 {/* 送出按鈕 */}
                 <button
-                    className="w-[24px] h-[24px] border-1 rounded-lg border-base-content"
+                    className="w-[24px] h-[24px] sm:mt-[30px] border-1 rounded-lg border-base-content"
                     onClick={handleSubmit}
                     disabled={!title || !startTime || !endTime}
                 >
@@ -107,8 +99,8 @@ function AddTodayItem({ onAddTask }) {
 function Pond() {
     return (
         <>
-            <Link to="/fishgame" className="w-[30%] px-[2rem] py-[1rem] flex justify-center items-center bg-base-100 border-1 rounded-lg border-base-content">
-                <p>魚塘</p>
+            <Link to="/fishgame" className="sm:w-[30%] px-[2rem] py-[1rem] flex justify-center items-center bg-base-100 border-1 rounded-lg border-base-content">
+                <span className="text-[20px] sm:text-[2rem]">魚塘</span>
             </Link>
         </>
     );
@@ -117,7 +109,7 @@ function Pond() {
 function BoardTodoList() {
     return (
         <Link to={"/TodoList"} className="h-[100%] px-[2rem] py-[1rem] bg-base-100 border-1 rounded-lg border-base-content">
-            <span>代辦事項</span>
+            <span className="text-[20px] sm:text-[32px]">代辦事項</span>
             <section className="grid gap-[1rem]">
                 <div>
                     <div className="flex flex-row gap-[1rem]">
