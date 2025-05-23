@@ -8,24 +8,11 @@ function Pomodoro() {
             <Helmet>
                 <title>Just Today | 番茄鐘</title>
             </Helmet>
+            
             <div className="content mt-[4rem] mx-auto">
-                <div className="flex flex-row gap-[4rem] justify-between items-center">
-                    <div className="breadcrumbs text-sm">
-                        <ul>
-                            <li><Link to={"/"}>首頁</Link></li>
-                            <li><Link to={"/Pomodoro"}>番茄鐘設定</Link></li>
-                        </ul>
-                    </div>
-                    <p>現在時間 2025 年 04 月 11 日 上午 12 : 00</p>
-                </div>
-
-                {/* 番茄鐘設定區 */}
-                <TimerSetting />
-
-                {/* 進度條區 */}
-                <ProgressBars />
-
+                
             </div>
+            
             <div className="footer"> </div>
         </div >
     );

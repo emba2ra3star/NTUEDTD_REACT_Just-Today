@@ -7,22 +7,20 @@ import Home from './pages/Home';
 import About from './pages/About';
 import FishGame from './pages/FishGame';
 import Pomodoro from './pages/Pomodoro';
-import TodoList from './pages/TodoList'; 
+import TodoList from './pages/TodoList';
 
 function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Header title="#" />
-        <div className="pt-16 px-4">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/fishgame" element={<FishGame />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/Pomodoro" element={<Pomodoro />} />
-            <Route path="/TodoList" element={<TodoList />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/fishgame" element={<FishGame />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/Pomodoro" element={<Pomodoro />} />
+          <Route path="/TodoList" element={<TodoList />} />
+        </Routes>
       </BrowserRouter>
     </HelmetProvider>
   );
