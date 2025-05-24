@@ -4,7 +4,7 @@ function NavMenu() {
     const pageTitle = "番茄鐘";
     const navList = [
         { name: "今日事項", path: "/" },
-        { name: "代辦事項", path: "/TodoList" },
+        { name: "待辦事項", path: "/TodoList" },
         { name: "番茄鐘", path: "/Pomodoro" },
         { name: "摸魚", path: "/fishgame" },
         { name: "設定", path: "/" },

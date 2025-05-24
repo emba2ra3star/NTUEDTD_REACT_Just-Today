@@ -27,6 +27,10 @@ function FormSection() {
   return (
     <form className="space-y-4 text-black">
       <div>
+        <div className="flex items-center gap-2 text-xl font-bold mb-4">
+          <img src="public\Plus.png" alt="icon" className="w-6 h-6" />
+          新增項目
+        </div>    
         <h2 className="text-lg font-bold">事項名稱</h2>
         <input
           type="text"
@@ -92,9 +96,30 @@ function FormSection() {
         <button type="button" onClick={handleClear} className="btn btn-outline">
           清除
         </button>
-        <button type="submit" className="btn btn-primary">
-          完成
+        <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              setTasks([
+                ...tasks,
+                {
+                  ...formData,
+                  id: Date.now(), // 可以加上 ID
+                },
+              ]);
+              setFormData({
+                title: "",
+                description: "",
+                startDate: "",
+                startTime: "",
+                endTime: "",
+                tags: [],
+              });
+            }}
+          >
+          新增
         </button>
+
       </div>
     </form>
   );
