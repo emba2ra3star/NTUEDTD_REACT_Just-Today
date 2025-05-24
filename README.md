@@ -1,42 +1,43 @@
-# 📝 Just Today｜待辦事項管理系統
+# 📝 Just Today | Task Management System
 
-Just Today 是一個以 React 打造的日常任務管理工具，幫助你以簡潔介面快速記錄、分類與預覽每日行程，讓每一天都不留遺漏。
-
----
-
-## 🚀 專案特色
-
-- 📋 **任務建立**：輸入事項名稱、說明、日期與時間
-- 🏷️ **標籤管理**：快速選擇「學校 / 私人 / 工作」或自定義標籤
-- 🖼️ **即時預覽**：輸入內容後右側立即呈現任務卡片
-- 🎨 **簡潔風格**：黑白主題搭配圓角、陰影，符合現代設計
-- 🔗 **導覽欄支援**：整合多分頁導覽（如今日事項、番茄鐘、摸魚）
+**Just Today** is a sleek and intuitive task management web app built with React. It helps users stay on top of daily tasks through a clean UI, tag-based categorization, and real-time task preview.
 
 ---
 
-## 🛠️ 技術架構
+## ✨ Features
 
-- **React 18**
-- **Tailwind CSS** + DaisyUI：快速打造風格一致的元件
-- **React Router**：分頁導覽
-- **React Helmet**：動態設定頁面標題
-- （選用）**Redux Toolkit**：狀態集中管理
+- ✅ **Create Tasks**: Add title, description, date, start/end time
+- 🏷️ **Label System**: Choose from preset labels (school, personal, work) or define your own
+- 📋 **Live Preview**: Instantly preview your tasks as you type
+- 🎨 **Minimal UI**: Clean layout with rounded cards, shadows, and black & white aesthetics
+- 📂 **Multi-Page Navigation**: Includes Today’s Tasks, Todo List, Pomodoro Timer, Break Games, Settings, About
 
 ---
 
-## 💻 本地開發方式
+## 🔧 Tech Stack
 
-1️⃣ 下載專案：
+- **React 18** + **Vite**
+- **Tailwind CSS** + **DaisyUI**
+- **React Router v6**
+- **React Helmet** (for dynamic page titles)
+- (Optional) **Redux Toolkit** for global state management
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
 ```bash
-git clone https://github.com/你的帳號/Just-Today.git
+git clone https://github.com/your-username/Just-Today.git
 cd Just-Today
 ```
-2️⃣ 安裝相依套件：
+2. **Install dependencies**
 ```bash
 npm install
 ```
-3️⃣ 啟動本地伺服器：
+3. **Start the development server**
 ```bash
 npm run dev
 ```
-專案由 emba2ra3star和meminn422 開發，若你喜歡這個專案，歡迎點個 🌟 Star 支持！
+Developed by emba2ra3star and meminn422.
+If you find this project useful, feel free to ⭐ star and fork 🍴 it!
