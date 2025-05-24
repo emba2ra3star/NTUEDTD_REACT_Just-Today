@@ -4,13 +4,13 @@ function NavMenu() {
     const pageTitle = "番茄鐘";
     const navList = [
         { name: "今日事項", path: "/" },
-        { name: "代辦事項", path: "/" },
-        { name: "番茄鐘", path: "/" },
-        { name: "摸魚", path: "/" },
+        { name: "代辦事項", path: "/TodoList" },
+        { name: "番茄鐘", path: "/Pomodoro" },
+        { name: "摸魚", path: "/fishgame" },
         { name: "設定", path: "/" },
-        { name: "關於我們", path: "/" },
+        { name: "關於我們", path: "/about" },
     ]
-    
+
     return (
         <div className="w-1/7 min-w-[210px] h-full pb-11 flex flex-col justify-between">
             <div className="flex flex-col gap-2">
