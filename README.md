@@ -30,12 +30,13 @@ Just Today 是一個以 React 打造的日常任務管理工具，幫助你以�
 ```bash
 git clone https://github.com/你的帳號/Just-Today.git
 cd Just-Today
+```
 2️⃣ 安裝相依套件：
 ```bash
 npm install
+```
 3️⃣ 啟動本地伺服器：
 ```bash
 npm run dev
-
-
+```
 專案由 emba2ra3star和meminn422 開發，若你喜歡這個專案，歡迎點個 🌟 Star 支持！
