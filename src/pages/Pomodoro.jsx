@@ -2,15 +2,17 @@ import { Helmet } from "react-helmet-async";
 import TimerSetting from "../components/pomodoro/TimerSetting";
 import { Link } from "react-router";
 
+import NavMenu from "../components/NavMenu";
+
 function Pomodoro() {
     return (
-        <div className="main_layout">
+        <div className="main_layout text-black">
             <Helmet>
                 <title>Just Today | 番茄鐘</title>
             </Helmet>
             
-            <div className="content mt-[4rem] mx-auto">
-                
+            <div className="content mt-[5rem] mx-auto w-full">
+                <NavMenu />
             </div>
             
             <div className="footer"> </div>

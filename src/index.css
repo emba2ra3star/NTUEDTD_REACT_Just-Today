@@ -1,5 +1,35 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+@plugin "daisyui"{
+    themes:light,dark;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #6366F2;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #6366F2;
+}
+
+/* [data-theme="light"] {
+  .footer-bg {
+    background-color: #3E3F92;
+  }
+
+  .drawer-bg {
+    background-color: #fff;
+  }
+}
+
+[data-theme="dark"] {
+  .drawer-bg {
+    background-color: #222;
+  }
+} */
 
 .main_layout {
     display: grid;
