@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import NavMenu from "../components/NavMenu";
-import FormSection from "../components/FormSection";
-import TaskListSection from "../components/TaskListSection";
+import FormSection from "../components/todolist/FormSection";
+import TaskListSection from "../components/todolist/TaskListSection";
 
 export default function TodoList() {
   const [formData, setFormData] = useState({

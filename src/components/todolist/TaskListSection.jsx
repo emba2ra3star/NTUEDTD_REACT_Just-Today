@@ -2,7 +2,7 @@ function TaskListSection({ tasks }) {
   return (
     <div>
         <div className="flex items-center gap-2 text-xl font-bold mb-4">
-            <img src="public\Future.png" alt="icon" className="w-6 h-6" />
+            <img src="/Future.png" alt="icon" className="w-6 h-6" />
             待辦事項
         </div>      
         <ul className="space-y-4">

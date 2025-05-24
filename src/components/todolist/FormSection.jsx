@@ -28,7 +28,7 @@ function FormSection() {
     <form className="space-y-4 text-black">
       <div>
         <div className="flex items-center gap-2 text-xl font-bold mb-4">
-          <img src="public\Plus.png" alt="icon" className="w-6 h-6" />
+          <img src="/Plus.png" alt="icon" className="w-6 h-6" />
           新增項目
         </div>    
         <h2 className="text-lg font-bold">事項名稱</h2>
