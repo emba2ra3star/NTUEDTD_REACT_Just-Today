@@ -92,13 +92,13 @@ function FormSection() {
         </div>
       </div>
 
-      <div className="flex gap-4">
-        <button type="button" onClick={handleClear} className="btn btn-outline">
+      <div className="flex justify-between pt-4">
+        <button type="button" onClick={handleClear} className="btn w-34 rounded-full">
           清除
         </button>
         <button
             type="button"
-            className="btn btn-primary"
+            className="btn w-64 rounded-full bg-black text-white"
             onClick={() => {
               setTasks([
                 ...tasks,

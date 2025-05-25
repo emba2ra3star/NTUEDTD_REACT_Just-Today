@@ -39,7 +39,7 @@ function FishGame() {
   };
 
   return (
-    <div className="pt-16 px-4 bg-cover min-h-screen">
+    <div className="flex-2 px-6 pb-10 bg-blue-50 flex items-center justify-center">
       <ScoreBar
         score={score}               // Redux來的
         clickCount={clickCount}     // local state
