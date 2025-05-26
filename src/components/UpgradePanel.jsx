@@ -28,11 +28,12 @@ function UpgradePanel({ score, upgrades}) {
   
             <button
               disabled={score < item.cost}
-              onClick={() => handleBuy(item.cost, item.name)}
-              className="btn btn-sm btn-primary w-full"
+              onClick={() => handleBuy(item.cost, item.name, item.id)}
+              className="border border-gray-500 text-sm px-4 py-1 rounded w-full hover:bg-gray-200"
             >
               購買
             </button>
+
           </div>
         ))}
       </div>
