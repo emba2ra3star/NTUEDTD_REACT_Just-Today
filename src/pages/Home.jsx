@@ -10,11 +10,11 @@ function Home() {
             <Helmet>
                 <title>Just Today | 首頁</title>
             </Helmet>
-            <div className="content mt-[5rem] flex flex-row items-center">
+            <div className="content mt-[5rem] flex flex-row">
                 <NavMenu />
                 <div className="w-6/7 h-full px-14 pb-10 flex flex-row gap-8">
                     <TodayList />
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col">
                         <TimeLine />
                         <div className="flex flex-row gap-8">
                             <AddTask />
@@ -38,6 +38,13 @@ function TodayList() {
     const [todayList, setTodayList] = useState([
         { title: "工作1", color: "#fff", isDone: true, startTime: "09:00", endTime: "10:00", note: "這是工作1的備註" },
         { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
     ]);
     const toggleIsDone = (id) => {
         setTodayList((prev) =>
@@ -48,7 +55,7 @@ function TodayList() {
     };
 
     return (
-        <div className="h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="max-h-[calc(100vh-8.5rem)] h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
             <div className="flex items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +66,7 @@ function TodayList() {
             </div>
 
             {/* list */}
-            <div className="flex flex-col">
+            <div className="flex flex-col overflow-y-auto">
                 {todayList.map((item, index) => (
                     <div
                         key={index}
@@ -89,7 +96,7 @@ function TodayList() {
                                     checked={item.isDone}
                                     onChange={() => { toggleIsDone(index); }}
                                     onClick={(e) => e.stopPropagation()}
-                                    className="checkbox"
+                                    className="checkbox mr-2"
                                 />
                             </div>
                         </div>
@@ -103,7 +110,7 @@ function TodayList() {
 
 function TimeLine() {
     return (
-        <div className="py-8 px-10 flex flex-col items-start gap-4 border-1 rounded-[50px] border-black bg-base-100 text-base">
+        <div className="pb-8 px-10 flex flex-col items-start gap-4 text-base">
             {/* title */}
             <div className="flex flex-row justify-center items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,7 +126,7 @@ function TimeLine() {
                 <h1 className="text-2xl/12 font-bold">時間軸</h1>
             </div>
 
-            <div className="relative mt-4 grid grid-cols-12 gap-4">
+            <div className="relative mt-4 w-full grid grid-cols-12 gap-4">
                 {/* boat */}
                 <div className="absolute top-[-50%] flex flex-col items-center">
                     <p>08:00</p>
@@ -148,7 +155,7 @@ function TimeLine() {
 
 function AddTask() {
     return (
-        <div className="w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             <div className="flex flex-row items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.5 5.2085V19.7918M5.20831 12.5002H19.7916" stroke="#1E1E1E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
@@ -156,20 +163,20 @@ function AddTask() {
                 <h1 className="text-2xl/12 font-bold">新增工作</h1>
             </div>
             <div className="flex flex-col gap-4">
-                <input type="text" placeholder="工作項目" className="input" />
+                <input type="text" placeholder="工作項目" className="input w-full" />
                 <div className="flex flex-row gap-4">
-                    <div className="flex flex-col">
+                    <div className="min-w-[4rem] flex flex-col">
                         <p>開始時間</p>
                         <input type="text" placeholder="00:00" className="input" />
                     </div>
                     <p className="self-center">~</p>
-                    <div className="flex flex-col">
+                    <div className="min-w-[4rem] flex flex-col">
                         <p>結束時間</p>
                         <input type="text" placeholder="00:00" className="input" />
                     </div>
                     <p className="self-end text-sm text-black/50">1h</p>
                 </div>
-                <textarea className="textarea" placeholder="備註"></textarea>
+                <textarea className="textarea w-full" placeholder="備註"></textarea>
                 <button className="btn btn-neutral">新增工作</button>
             </div>
         </div>
@@ -178,7 +185,7 @@ function AddTask() {
 
 function Timer() {
     return (
-        <div className="w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="w-full py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             <div className="flex flex-row items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_232_397)">
@@ -194,9 +201,9 @@ function Timer() {
             </div>
             <div className="flex flex-col">
                 <p>開始時間</p>
-                <div className=" py-5 px-12 border-1 border-black/20 rounded-lg flex justify-center items-center">
-                    <div className="w-[122px] h-[122px] flex items-center justify-center border-4 border-black/10 rounded-full">
-                        <p>123</p>
+                <div className="py-5 px-12 border-1 border-black/20 rounded-lg flex justify-center items-center">
+                    <div className="w-full aspect-square flex items-center justify-center border-4 border-black/10 rounded-full">
+                        <p className="text-5xl/12 font-bold">25</p>
                     </div>
                 </div>
             </div>
