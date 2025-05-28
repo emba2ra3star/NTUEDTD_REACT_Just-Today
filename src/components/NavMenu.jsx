@@ -7,7 +7,7 @@ function NavMenu() {
         { name: "待辦事項", path: "/TodoList" },
         { name: "番茄鐘", path: "/Pomodoro" },
         { name: "摸魚", path: "/fishgame" },
-        { name: "設定", path: "/" },
+        { name: "設定", path: "/setting" },
         { name: "關於我們", path: "/about" },
     ]
 
