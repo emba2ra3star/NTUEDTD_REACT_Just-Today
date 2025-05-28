@@ -9,6 +9,7 @@ import FishGame from './pages/FishGame';
 import Pomodoro from './pages/Pomodoro';
 import TodoList from './pages/TodoList';
 import SettingsPage from "./pages/SettingsPage";
+import AboutUs from './pages/AboutPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Pomodoro" element={<Pomodoro />} />
           <Route path="/TodoList" element={<TodoList />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

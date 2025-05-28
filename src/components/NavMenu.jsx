@@ -8,7 +8,7 @@ function NavMenu() {
         { name: "番茄鐘", path: "/Pomodoro" },
         { name: "摸魚", path: "/fishgame" },
         { name: "設定", path: "/settings" },
-        { name: "關於我們", path: "/about" },
+        { name: "關於我們", path: "/aboutus" },
     ]
 
     return (
