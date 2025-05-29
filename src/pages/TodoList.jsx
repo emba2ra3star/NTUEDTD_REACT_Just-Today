@@ -23,9 +23,9 @@ export default function TodoList() {
       </Helmet>
 
       {/* 主內容區：左右兩欄 */}
-      <div className="flex min-h-screen pt-[5rem]">
+      <div className="flex min-h-screen mt-[5rem]">
         {/* 左側 NavMenu，傳入 pageTitle 確保高亮 */}
-        <div className="w-1/6">
+        <div className="flex">
           <NavMenu pageTitle="代辦事項" />
         </div>
 
