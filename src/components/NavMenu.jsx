@@ -12,7 +12,7 @@ function NavMenu() {
     ]
 
     return (
-        <nav className="w-1/7 min-w-[210px] h-[calc(screen-5rem)] pb-11 flex flex-col justify-between">
+        <nav className="min-w-[210px] h-[calc(screen-5rem)] pb-11 flex flex-col justify-between">
             <div className="flex flex-col gap-2">
                 {navList.slice(0, 4).map((item, index) => (
                     <Link
