@@ -14,9 +14,7 @@ export default function SettingsPage() {
 
       <div className="flex flex-1 pt-[5rem]">
         {/* 左側 NavMenu */}
-        <div className="w-[240px]">
-          <NavMenu pageTitle="設定" />
-        </div>
+        <NavMenu pageTitle="設定" />
 
         {/* 主區塊：左右兩卡片 */}
         <div className="flex-1 p-10 flex gap-8">

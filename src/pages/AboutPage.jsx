@@ -14,9 +14,7 @@ export default function AboutPage() {
 
       <div className="flex flex-1 pt-[5rem]">
         {/* 左側 NavMenu */}
-        <div className="w-[240px]">
-          <NavMenu pageTitle="關於我們" />
-        </div>
+        <NavMenu pageTitle="關於我們" />
 
         <div className="flex-1 p-10 flex gap-6">
           <div className="flex-1 flex flex-col gap-6">

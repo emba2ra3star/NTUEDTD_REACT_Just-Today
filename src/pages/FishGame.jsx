@@ -10,36 +10,38 @@ export default function FishGame() {
   const [happiness] = useState("歡樂滿滿");
 
   const upgrades = [
-  {
-    id: 1,
-    name: "好吃的飼料",
-    effect: "積分 +10/s",
-    cost: 100,
-    icon: "/bubble_chart.png",
-  },
-  {
-    id: 2,
-    name: "海草呼海草",
-    effect: "積分 +30/s",
-    cost: 600,
-    icon: "/grass.png",
-  },
-  {
-    id: 3,
-    name: "更多好撈游",
-    effect: "積分 +50/s",
-    cost: 1800,
-    icon: "/image 20.png",
-  },
-  {
-    id: 4,
-    name: "美味的一餐",
-    effect: "積分 +150/s",
-    cost: 4000,
-    icon: "/set_meal.png",
-  },
-];
-  
+    {
+      id: 1,
+      name: "好吃的飼料",
+      effect: "積分 +10/s",
+      cost: 100,
+      icon: "/bubble_chart.png",
+    },
+    {
+      id: 2,
+      name: "海草呼海草",
+      effect: "積分 +30/s",
+      cost: 600,
+      icon: "/grass.png",
+    },
+    {
+      id: 3,
+      name: "更多好撈游",
+      effect: "積分 +50/s",
+      cost: 1800,
+      icon: "/image 20.png",
+    },
+    {
+      id: 4,
+      name: "美味的一餐",
+      effect: "積分 +150/s",
+      cost: 4000,
+      icon: "/set_meal.png",
+    },
+  ];
+
+
+
   const handleFishClick = () => {
     setScore((prev) => prev + 2);
   };
@@ -65,9 +67,7 @@ export default function FishGame() {
       {/* 主內容：左右分欄，和 TodoList 結構一致 */}
       <div className="flex flex-1 pt-[5rem]">
         {/* 左側 NavMenu */}
-        <div className="w-[240px]">
-          <NavMenu pageTitle="摸魚" />
-        </div>
+        <NavMenu pageTitle="摸魚" />
 
         {/* 右側主體 */}
         <div className="flex-1 p-6 flex">
