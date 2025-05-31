@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer components {
+  .border-box {
+    @apply border-2 border-[#4D5C92] rounded-2xl;
+  }
+}
+
 @plugin "daisyui"{
     themes:light,dark;
 }
