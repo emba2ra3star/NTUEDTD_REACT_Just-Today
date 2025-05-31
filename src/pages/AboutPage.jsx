@@ -20,43 +20,42 @@ export default function AboutPage() {
 
         <div className="flex-1 p-10 flex gap-6">
           <div className="flex-1 flex flex-col gap-6">
-  {/* 關於我們 */}
-  <div className="flex-1 rounded-3xl border p-6 shadow flex flex-col">
-    <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
-      <Info size={20} />
-      關於我們
-    </h2>
-    <div className="space-y-3 flex-1 overflow-auto">
-      <div>
-        <p className="font-semibold">說明</p>
-        <p className="text-sm text-gray-500">（請輸入說明內容）</p>
-      </div>
-      <div>
-        <p className="font-semibold">開發工具</p>
-        <p className="text-sm text-gray-500">（請輸入開發技術）</p>
-      </div>
-    </div>
-  </div>
+            <div className="flex-1 rounded-3xl border p-6 shadow flex flex-col">
+                <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
+                <Info size={20} />
+                關於我們
+                </h2>
+                <div className="space-y-3 flex-1 overflow-auto">
+                <div>
+                    <p className="font-semibold">說明</p>
+                    <p className="text-sm text-gray-500">（請輸入說明內容）</p>
+                </div>
+                <div>
+                    <p className="font-semibold">開發工具</p>
+                    <p className="text-sm text-gray-500">（請輸入開發技術）</p>
+                </div>
+                </div>
+            </div>
 
-  {/* 開發團隊 */}
-  <div className="flex-1 rounded-3xl border p-6 shadow flex flex-col">
-    <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
-      <Smile size={20} />
-      開發團隊成員
-    </h2>
-    <div className="space-y-4 flex-1 overflow-auto">
-      {["開發人員1", "開發人員2"].map((member, index) => (
-        <div key={index} className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-gray-300" />
-          <div>
-            <p className="font-semibold">{member}</p>
-            <p className="text-sm text-gray-500">（備註）</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
+            {/* 開發團隊 */}
+            <div className="flex-1 rounded-3xl border p-6 shadow flex flex-col">
+                <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
+                <Smile size={20} />
+                開發團隊成員
+                </h2>
+                <div className="space-y-4 flex-1 overflow-auto">
+                {["開發人員1", "開發人員2"].map((member, index) => (
+                    <div key={index} className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gray-300" />
+                    <div>
+                        <p className="font-semibold">{member}</p>
+                        <p className="text-sm text-gray-500">（備註）</p>
+                    </div>
+                    </div>
+                ))}
+                </div>
+            </div>
+            </div>
 
           {/* 意見回饋卡片 */}
           <div className="w-[320px] rounded-3xl border p-6 shadow">

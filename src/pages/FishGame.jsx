@@ -40,8 +40,6 @@ export default function FishGame() {
   },
 ];
   
-
-
   const handleFishClick = () => {
     setScore((prev) => prev + 2);
   };
