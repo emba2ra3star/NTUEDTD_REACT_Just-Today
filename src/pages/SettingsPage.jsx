@@ -13,12 +13,8 @@ export default function SettingsPage() {
       <Header />
 
       <div className="flex flex-1 pt-[5rem]">
-        {/* 左側 NavMenu */}
         <NavMenu pageTitle="設定" />
-
-        {/* 主區塊：左右兩卡片 */}
         <div className="flex-1 p-10 flex gap-8">
-          {/* 左卡：基本設定 */}
           <div className="flex-1 rounded-3xl border p-6 shadow">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
               <UserCircle size={20} />
