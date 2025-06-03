@@ -12,11 +12,11 @@ function Pomodoro() {
                 <title>Just Today | 番茄鐘</title>
             </Helmet>
 
-            <div className="content mt-[5rem] flex flex-row">
+            <div className="content max-h-[calc(100vh-6rem)] mt-[5rem] flex flex-row">
                 <NavMenu />
                 <div className="w-6/7 h-full px-14 pb-10 flex flex-row gap-8">
                     <Chart />
-                    <div className="w-full flex flex-col gap-8">
+                    <div className="h-full w-full flex flex-col gap-8">
                         <PomodoroSetting />
                         <LatestTask />
                     </div>
@@ -32,7 +32,7 @@ export default Pomodoro;
 
 function Chart() {
     return (
-        <div className="max-h-[calc(100vh-8.5rem)] h-full w-[40%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="h-full w-[40%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
             <div className="flex items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,7 @@ function Chart() {
 
 function PomodoroSetting() {
     return (
-        <div className="h-full w-full py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="w-full py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
             <div className="flex flex-row justify-between">
                 <div className="flex items-center gap-1">
@@ -231,7 +231,7 @@ function LatestTask() {
     };
 
     return (
-        <div className="py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="h-full flex flex-col gap-4 py-8 px-10 flex-1 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
             <div className="flex items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -242,7 +242,7 @@ function LatestTask() {
             </div>
 
             {/* list */}
-            <div className="max-h-[82px] flex flex-col overflow-y-auto">
+            <div className="flex-1 overflow-y-auto">
                 {todayList.map((item, index) => (
                     <div
                         key={index}

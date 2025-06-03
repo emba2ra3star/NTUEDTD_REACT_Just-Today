@@ -5,7 +5,7 @@ import { Info, Smile, MessageSquare } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black">
+    <div className="main_layout flex flex-col bg-white text-black">
       <Helmet>
         <title>關於我們(未登入)</title>
       </Helmet>
@@ -14,7 +14,7 @@ export default function AboutPage() {
 
       <div className="flex flex-1 pt-[5rem]">
         {/* 左側 NavMenu */}
-        <NavMenu pageTitle="關於我們" />
+        <NavMenu />
 
         <div className="flex-1 p-10 flex gap-6">
           <div className="flex-1 flex flex-col gap-6">

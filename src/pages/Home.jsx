@@ -10,7 +10,8 @@ function Home() {
             <Helmet>
                 <title>Just Today | 首頁</title>
             </Helmet>
-            <div className="content mt-[5rem] flex flex-row">
+
+            <div className="content max-h-[calc(100vh-6rem)] mt-[5rem] flex">
                 <NavMenu />
                 <div className="w-6/7 h-full px-14 pb-10 flex flex-row gap-8">
                     <TodayList />
@@ -55,7 +56,7 @@ function TodayList() {
     };
 
     return (
-        <div className="max-h-[calc(100vh-8.5rem)] h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
             <div className="flex items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
