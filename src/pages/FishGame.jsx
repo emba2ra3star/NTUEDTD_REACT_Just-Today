@@ -56,18 +56,15 @@ export default function FishGame() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col text-black bg-white">
+    <div className="main_layout text-black bg-white">
       <Helmet>
         <title>Just Today | 摸魚遊戲</title>
       </Helmet>
 
-      {/* Header 不動 */}
-      <Header />
-
       {/* 主內容：左右分欄，和 TodoList 結構一致 */}
-      <div className="flex flex-1 pt-[5rem]">
+      <div className="content max-h-[calc(100vh-6rem)] flex mt-[5rem]">
         {/* 左側 NavMenu */}
-        <NavMenu pageTitle="摸魚" />
+        <NavMenu />
 
         {/* 右側主體 */}
         <div className="flex-1 p-6 flex">

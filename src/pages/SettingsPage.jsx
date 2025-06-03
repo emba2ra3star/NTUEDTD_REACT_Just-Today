@@ -5,15 +5,19 @@ import { UserCircle, RefreshCcw, ChevronRight } from "lucide-react";
 
 export default function SettingsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black">
+    <div className="main_layout flex flex-col bg-white text-black">
       <Helmet>
         <title>設定(未登入)</title>
       </Helmet>
 
+      {/* #這個是有特別需要嗎？？ */}
       <Header />
 
       <div className="flex flex-1 pt-[5rem]">
-        <NavMenu pageTitle="設定" />
+        {/* 左側 NavMenu */}
+        <NavMenu />
+
+        {/* 主區塊：左右兩卡片 */}
         <div className="flex-1 p-10 flex gap-8">
           <div className="flex-1 rounded-3xl border p-6 shadow">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
