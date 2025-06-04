@@ -3,17 +3,33 @@ import { Helmet } from "react-helmet-async";
 import Board from "../components/board/Board";
 import NavMenu from "../components/NavMenu";
 import { useState } from "react";
+import { Menu, X } from 'lucide-react'; // 可替換成任意 icon library
 
 function Home() {
+    const [menuOpen, setMenuOpen] = useState(false);
     return (
         <div className="main_layout">
             <Helmet>
                 <title>Just Today | 首頁</title>
             </Helmet>
 
+            {/* 漢堡按鈕 - 只在 md 以下尺寸出現 */}
+            <button
+                className="absolute top-6 left-4 z-50 md:hidden"
+                onClick={() => setMenuOpen(!menuOpen)}
+            >
+                {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
             <div className="content max-h-[calc(100vh-6rem)] mt-[5rem] flex">
-                <NavMenu />
-                <div className="w-6/7 h-full px-14 pb-10 flex flex-row gap-8">
+                {/* 左側選單：大螢幕顯示，小螢幕根據 menuOpen 控制顯示 */}
+                <div
+                    className={`transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'hidden -translate-x-full'} md:translate-x-0 md:block`}
+                >
+                    <NavMenu />
+                </div>
+
+                <div className={`${menuOpen?"w-6/7":"w-full"} h-full px-14 pb-10 flex flex-row gap-8`}>
                     <TodayList />
                     <div className="flex flex-col">
                         <TimeLine />
