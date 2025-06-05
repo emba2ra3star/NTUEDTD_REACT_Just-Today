@@ -92,6 +92,64 @@ function Chart() {
 
 function PomodoroSetting() {
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [activeTab, setActiveTab] = useState('focus'); // focus, shortBreak, longBreak
+    const [timeLeft, setTimeLeft] = useState(25 * 60); // 預設25分鐘
+    const [isRunning, setIsRunning] = useState(false);
+
+    // 各模式的預設時間（秒）
+    const defaultTimes = {
+        focus: 25 * 60,      // 25分鐘
+        shortBreak: 5 * 60,  // 5分鐘
+        longBreak: 10 * 60   // 10分鐘
+    };
+
+    // 切換模式時重置計時器
+    useEffect(() => {
+        setTimeLeft(defaultTimes[activeTab]);
+        setIsRunning(false);
+    }, [activeTab]);
+
+    // 倒數計時
+    useEffect(() => {
+        let timer;
+        if (isRunning && timeLeft > 0) {
+            timer = setInterval(() => {
+                setTimeLeft(prev => {
+                    if (prev <= 1) {
+                        setIsRunning(false);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
+        }
+        return () => clearInterval(timer);
+    }, [isRunning]);
+
+    // 格式化倒數時間
+    const formatCountdown = (seconds) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    };
+
+    // 增加/減少時間
+    const adjustTime = (amount) => {
+        if (!isRunning) {
+            setTimeLeft(prev => Math.max(60, Math.min(60 * 60, prev + amount)));
+        }
+    };
+
+    // 開始/暫停計時
+    const toggleTimer = () => {
+        setIsRunning(!isRunning);
+    };
+
+    // 重置計時器
+    const resetTimer = () => {
+        setIsRunning(false);
+        setTimeLeft(defaultTimes[activeTab]);
+    };
 
     // 現在時間
     useEffect(() => {
@@ -144,71 +202,64 @@ function PomodoroSetting() {
             </div>
             {/* 鐘面 */}
             <div className="tabs tabs-border">
-                <input type="radio" name="my_tabs_2" className="tab" aria-label="專注時間" defaultChecked />
+                {/* Nav */}
+                <input 
+                    type="radio" 
+                    name="my_tabs_2" 
+                    className="tab" 
+                    aria-label="專注時間" 
+                    checked={activeTab === 'focus'}
+                    onChange={() => setActiveTab('focus')}
+                />
+                <input 
+                    type="radio" 
+                    name="my_tabs_2" 
+                    className="tab" 
+                    aria-label="小休息"
+                    checked={activeTab === 'shortBreak'}
+                    onChange={() => setActiveTab('shortBreak')}
+                />
+                <input 
+                    type="radio" 
+                    name="my_tabs_2" 
+                    className="tab" 
+                    aria-label="大休息"
+                    checked={activeTab === 'longBreak'}
+                    onChange={() => setActiveTab('longBreak')}
+                />
+                {/* 鐘面 */}
                 <div className="px-6 tab-content border-px border-black/30 rounded-lg">
                     <div className="w-full h-full flex flex-row items-center justify-center">
                         {/* 增減按鈕 */}
                         <div className="flex flex-col justify-between items-center gap-2">
-                            <button className="btn btn-square bg-black/10">
+                            <button 
+                                className="btn btn-square bg-black/10"
+                                onClick={() => adjustTime(60)}
+                                disabled={isRunning}
+                            >
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 3.3335V12.6668M3.33333 8.00016H12.6667" stroke="#1E1E1E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </button>
-                            <button className="btn btn-square bg-black/10">
+                            <button 
+                                className="btn btn-square bg-black/10"
+                                onClick={() => adjustTime(-60)}
+                                disabled={isRunning}
+                            >
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3.33333 8H12.6667" stroke="#1E1E1E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </button>
                         </div>
                         {/* 時刻 */}
-                        <div className="mx-[30%] text-6xl font-bold">TIME</div>
-                    </div>
-                </div>
-
-                <input type="radio" name="my_tabs_2" className="tab" aria-label="小休息" />
-                <div className="px-6 tab-content border-px border-black/30 rounded-lg">
-                    <div className="w-full h-full flex flex-row items-center justify-center">
-                        {/* 增減按鈕 */}
-                        <div className="flex flex-col justify-between items-center gap-2">
-                            <button className="btn btn-square bg-black/10">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 3.3335V12.6668M3.33333 8.00016H12.6667" stroke="#1E1E1E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </button>
-                            <button className="btn btn-square bg-black/10">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.33333 8H12.6667" stroke="#1E1E1E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </button>
+                        <div className="mx-[30%] text-6xl font-bold">
+                            {formatCountdown(timeLeft)}
                         </div>
-                        {/* 時刻 */}
-                        <div className="mx-[30%] text-6xl font-bold">TIME</div>
-                    </div>
-                </div>
-
-                <input type="radio" name="my_tabs_2" className="tab" aria-label="大休息" />
-                <div className="px-6 tab-content border-px border-black/30 rounded-lg">
-                    <div className="w-full h-full flex flex-row items-center justify-center">
-                        {/* 增減按鈕 */}
-                        <div className="flex flex-col justify-between items-center gap-2">
-                            <button className="btn btn-square bg-black/10">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 3.3335V12.6668M3.33333 8.00016H12.6667" stroke="#1E1E1E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </button>
-                            <button className="btn btn-square bg-black/10">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.33333 8H12.6667" stroke="#1E1E1E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        {/* 時刻 */}
-                        <div className="mx-[30%] text-6xl font-bold">TIME</div>
                     </div>
                 </div>
             </div>
             {/* 按鈕 */}
-            <div className="mt-8 flex flex-row justify-between items-center ">
+            <div className="mt-8 flex flex-row justify-between items-center">
                 <div className="w-1/3 flex justify-center">
                     <button className="btn bg-white border-black">
                         <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -218,15 +269,32 @@ function PomodoroSetting() {
                     </button>
                 </div>
                 <div className="w-1/3 flex justify-center">
-                    <button className="btn bg-neutral text-white">
-                        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2.5 2L14.5 10L2.5 18V2Z" stroke="#B3B3B3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <p>開始專注</p>
+                    <button 
+                        className={`btn ${isRunning ? 'bg-warning' : 'bg-neutral'} text-white`}
+                        onClick={toggleTimer}
+                    >
+                        {isRunning ? (
+                            <>
+                                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 4H4V16H6V4ZM12 4H10V16H12V4Z" stroke="#B3B3B3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                                <p>暫停</p>
+                            </>
+                        ) : (
+                            <>
+                                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.5 2L14.5 10L2.5 18V2Z" stroke="#B3B3B3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <p>開始專注</p>
+                            </>
+                        )}
                     </button>
                 </div>
                 <div className="w-1/3 flex justify-center">
-                    <button className="btn bg-white border-black">
+                    <button 
+                        className="btn bg-white border-black"
+                        onClick={resetTimer}
+                    >
                         <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.1744 2L11.1744 2M11.1744 2V6.80034M11.1744 2L14.8078 5.71226C15.9566 6.81707 16.7003 8.2504 16.9268 9.79629C17.1534 11.3422 16.8505 12.9169 16.0638 14.2831C15.2771 15.6494 14.0492 16.7332 12.5652 17.3712C11.0811 18.0092 9.42132 18.1669 7.83581 17.8205C6.2503 17.4741 4.825 16.6424 3.77466 15.4507C2.72431 14.2589 2.10583 12.7718 2.0124 11.2132C1.91896 9.65469 2.35564 8.10921 3.25664 6.80966C4.15764 5.51012 5.47414 4.52689 7.00778 4.00814" stroke="#757575" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -257,7 +325,6 @@ function LatestTask() {
 
                 <h1 className="text-2xl/12 font-bold">最近的工作項目</h1>
             </div>
-
             {/* list */}
             <div className="flex-1 overflow-y-auto">
                 {todayList.map((item, index) => (
