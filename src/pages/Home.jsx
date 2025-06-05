@@ -80,7 +80,7 @@ function TodayList() {
     }
     
     return (
-        <div className="h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-2 rounded-[50px] card">
             {/* title */}
             <div className="flex items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +108,7 @@ function TodayList() {
                             </div>
                             {/* 內容 */}
                             <div className="flex flex-col justify-center gap-2">
-                                <h2 className="mt-1.5 pl-3 text-base/8 border-l-8">{item.title}</h2>
+                                <h2 className="mt-1.5 pl-3 text-base/8 border-l-8 border-[#FFCA73]">{item.title}</h2>
                                 <div className={`overflow-hidden transition-[max-height] duration-300 easy-in ${openId === index ? "max-h-40" : "max-h-0"}`}>
                                     <div className="text-sm/8 text-black/50">{item.note}</div>
                                 </div>
@@ -215,7 +215,7 @@ function AddTask({ onAddTask }) {
     };
 
     return (
-        <div className="py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="py-8 px-10 flex flex-col gap-4 border-2 rounded-[50px] card">
             {/* title */}
             <div className="flex flex-row items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -263,7 +263,7 @@ function AddTask({ onAddTask }) {
                     value={newTask.note}
                     onChange={(x) => setNewTask(pref => ({ ...pref, note: x.target.value }))}
                 />
-                <button type="submit" className="btn btn-neutral">新增工作</button>
+                <button type="submit" className="btn btn1 rounded-full">新增工作</button>
             </form>
         </div>
     );
@@ -305,7 +305,7 @@ function Timer() {
     };
 
     return (
-        <div className="w-full py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="w-full py-8 px-10 flex flex-col gap-4 border-2 rounded-[50px] card">
             {/* title */}
             <div className="flex flex-row items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -332,13 +332,13 @@ function Timer() {
             {/* 按鈕 */}
             <div className="flex gap-2">
                 <button 
-                    className={`btn flex-1 ${isRunning ? 'btn-warning' : 'btn-neutral'}`}
+                    className={`btn flex-1 ${isRunning ? 'btn-warning' : 'btn1'} rounded-full`}
                     onClick={toggleTimer}
                 >
                     {isRunning ? '暫停' : '開始專注'}
                 </button>
                 <button 
-                    className="btn btn-outline"
+                    className="btn btn2 rounded-full"
                     onClick={resetTimer}
                 >
                     重置
