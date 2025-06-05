@@ -201,34 +201,30 @@ function PomodoroSetting() {
                 </div>
             </div>
             {/* 鐘面 */}
-            <div className="tabs tabs-border">
+            <div className="flex flex-col">
                 {/* Nav */}
-                <input 
-                    type="radio" 
-                    name="my_tabs_2" 
-                    className="tab" 
-                    aria-label="專注時間" 
-                    checked={activeTab === 'focus'}
-                    onChange={() => setActiveTab('focus')}
-                />
-                <input 
-                    type="radio" 
-                    name="my_tabs_2" 
-                    className="tab" 
-                    aria-label="小休息"
-                    checked={activeTab === 'shortBreak'}
-                    onChange={() => setActiveTab('shortBreak')}
-                />
-                <input 
-                    type="radio" 
-                    name="my_tabs_2" 
-                    className="tab" 
-                    aria-label="大休息"
-                    checked={activeTab === 'longBreak'}
-                    onChange={() => setActiveTab('longBreak')}
-                />
+                <div className="tabs tabs-boxed">
+                    <button 
+                        className={`px-2 mx-2 tab ${activeTab === 'focus' ? 'tab-active border-black border-b' : ''}`}
+                        onClick={() => setActiveTab('focus')}
+                    >
+                        專注時間
+                    </button>
+                    <button 
+                        className={`px-2 mx-2 tab ${activeTab === 'shortBreak' ? 'tab-active border-black border-b' : ''}`}
+                        onClick={() => setActiveTab('shortBreak')}
+                    >
+                        小休息
+                    </button>
+                    <button 
+                        className={`px-2 mx-2 tab ${activeTab === 'longBreak' ? 'tab-active border-black border-b' : ''}`}
+                        onClick={() => setActiveTab('longBreak')}
+                    >
+                        大休息
+                    </button>
+                </div>
                 {/* 鐘面 */}
-                <div className="px-6 tab-content border-px border-black/30 rounded-lg">
+                <div className="p-6 border border-black/30 rounded-lg">
                     <div className="w-full h-full flex flex-row items-center justify-center">
                         {/* 增減按鈕 */}
                         <div className="flex flex-col justify-between items-center gap-2">
