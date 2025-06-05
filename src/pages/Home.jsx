@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 import Board from "../components/board/Board";
 import NavMenu from "../components/NavMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from 'lucide-react'; // 可替換成任意 icon library
 
 import { useSelector, useDispatch } from "react-redux";
@@ -271,8 +271,43 @@ function AddTask({ onAddTask }) {
 }
 
 function Timer() {
+    const [timeLeft, setTimeLeft] = useState(25 * 60); // 25分鐘，以秒為單位
+    const [isRunning, setIsRunning] = useState(false);
+    // 格式化時間顯示
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
+    // 處理計時器
+    useEffect(() => {
+        let timerId;
+        if (isRunning && timeLeft > 0) {
+            timerId = setInterval(() => {
+                setTimeLeft(prev => {
+                    if (prev <= 1) {
+                        setIsRunning(false);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
+        }
+        return () => clearInterval(timerId);
+    }, [isRunning, timeLeft]);
+    // 開始/暫停計時
+    const toggleTimer = () => {
+        setIsRunning(!isRunning);
+    };
+    // 重置計時器
+    const resetTimer = () => {
+        setIsRunning(false);
+        setTimeLeft(25 * 60);
+    };
+
     return (
         <div className="w-full py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+            {/* title */}
             <div className="flex flex-row items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_232_397)">
@@ -286,15 +321,30 @@ function Timer() {
                 </svg>
                 <h1 className="text-2xl/12 font-bold">番茄鐘</h1>
             </div>
+            {/* 鐘面 */}
             <div className="flex flex-col">
-                <p>開始時間</p>
+                <p>剩餘時間</p>
                 <div className="py-5 px-12 border-1 border-black/20 rounded-lg flex justify-center items-center">
                     <div className="w-full aspect-square flex items-center justify-center border-4 border-black/10 rounded-full">
-                        <p className="text-5xl/12 font-bold">25</p>
+                        <p className="m-4 text-5xl/12 font-bold">{formatTime(timeLeft)}</p>
                     </div>
                 </div>
             </div>
-            <button className="btn btn-neutral">開始專注</button>
+            {/* 按鈕 */}
+            <div className="flex gap-2">
+                <button 
+                    className={`btn flex-1 ${isRunning ? 'btn-warning' : 'btn-neutral'}`}
+                    onClick={toggleTimer}
+                >
+                    {isRunning ? '暫停' : '開始專注'}
+                </button>
+                <button 
+                    className="btn btn-outline"
+                    onClick={resetTimer}
+                >
+                    重置
+                </button>
+            </div>
         </div>
     );
 }
