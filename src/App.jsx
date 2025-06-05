@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import Header from './components/Header';
 import Home from './pages/Home';
-import About from './pages/About';
+import About from './pages/AboutPage';
 import FishGame from './pages/FishGame';
 import Pomodoro from './pages/Pomodoro';
 import TodoList from './pages/TodoList';
