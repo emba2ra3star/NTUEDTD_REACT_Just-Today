@@ -3,7 +3,7 @@ import TimerSetting from "../components/pomodoro/TimerSetting";
 import { Link } from "react-router";
 
 import NavMenu from "../components/NavMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,6 +33,7 @@ function Pomodoro() {
 export default Pomodoro;
 
 function Chart() {
+    const todayList = useSelector(state => state.todayList);
     return (
         <div className="h-full w-[40%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
@@ -76,14 +77,14 @@ function Chart() {
                 {/* 今日工作完成度圓餅圖 */}
                 <div className="h-[30%] flex justify-center items-center">
                     <div className="h-full aspect-square flex items-center justify-center border-4 border-black/10 rounded-full">
-                        <p className="text-5xl/12 font-bold">25</p>
+                        <p className="text-5xl/12 font-bold">{todayList.filter(task => task.isDone).length}/{todayList.length}</p>
                     </div>
                 </div>
 
                 {/* 完成工作數量 */}
                 <div className="w-full flex flex-row justify-between items-center text-base">
                     <p>完成的工作數量</p>
-                    <p className="text-2xl">{0}</p>
+                    <p className="text-2xl">{todayList.filter(task => task.isDone).length}</p>
                     <p>份</p>
                 </div>
             </div>
@@ -92,6 +93,33 @@ function Chart() {
 }
 
 function PomodoroSetting() {
+    const [currentTime, setCurrentTime] = useState(new Date());
+    
+    // 現在時間
+    useEffect(() => {
+        // 每秒更新一次時間
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+
+        // 清理定時器
+        return () => clearInterval(timer);
+    }, []);
+    // 格式化日期時間
+    const formatDate = () => {
+        const year = currentTime.getFullYear();
+        const month = currentTime.getMonth() + 1;
+        const date = currentTime.getDate();
+        return `${year} 年 ${String(month).padStart(2, '0')} 月 ${String(date).padStart(2, '0')} 日`;
+    };
+    const formatTime = () => {
+        const hours = currentTime.getHours();
+        const minutes = currentTime.getMinutes();
+        const period = hours >= 12 ? '下午' : '上午';
+        const displayHours = hours % 12 || 12;
+        return `${period} ${String(displayHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    };
+
     return (
         <div className="w-full py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
@@ -112,8 +140,8 @@ function PomodoroSetting() {
                 {/* 現在時間 */}
                 <div className="mb-2 flex flex-row self-end text-sm gap-2">
                     <p>現在時間：</p>
-                    <p>0000 年 00 月 00 日</p>
-                    <p>下午 00:00</p>
+                    <p>{formatDate()}</p>
+                    <p>{formatTime()}</p>
                 </div>
             </div>
             {/* 鐘面 */}
@@ -217,7 +245,7 @@ function LatestTask() {
     const toggleCard = (id) => {
         setOpenId((prev) => (prev === id ? null : id));
     };
-    
+
     // Redux
     const dispatch = useDispatch();
     const todayList = useSelector(state => state.todayList);
