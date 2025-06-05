@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 
-import Board from "../components/board/Board";
 import NavMenu from "../components/NavMenu";
 import { useState, useEffect } from "react";
 import { Menu, X } from 'lucide-react'; // 可替換成任意 icon library
@@ -347,14 +346,4 @@ function Timer() {
             </div>
         </div>
     );
-}
-
-function OldOne() {
-    <div className="main_layout">
-        <Helmet>
-            <title>Just Today | 首頁</title>
-        </Helmet>
-        <Board />
-        <div className="footer bg-base-100"> </div>
-    </div>
 }
