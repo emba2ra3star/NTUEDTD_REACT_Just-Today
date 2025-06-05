@@ -1,11 +1,9 @@
 import { Helmet } from "react-helmet-async";
-import TimerSetting from "../components/pomodoro/TimerSetting";
-import { Link } from "react-router";
 
 import NavMenu from "../components/NavMenu";
 import { useState, useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Pomodoro() {
     return (
@@ -94,7 +92,7 @@ function Chart() {
 
 function PomodoroSetting() {
     const [currentTime, setCurrentTime] = useState(new Date());
-    
+
     // 現在時間
     useEffect(() => {
         // 每秒更新一次時間
@@ -247,16 +245,7 @@ function LatestTask() {
     };
 
     // Redux
-    const dispatch = useDispatch();
     const todayList = useSelector(state => state.todayList);
-    // 切換任務完成狀態
-    // const toggleIsDone = (id) => {
-    //     try {
-    //         dispatch(toggleIsDone(id));
-    //     } catch (error) {
-    //         console.error("Error toggling task:", error);
-    //     }
-    // }
 
     return (
         <div className="h-full flex flex-col gap-4 py-8 px-10 flex-1 border-1 rounded-[50px] border-black bg-base-100">
@@ -297,38 +286,6 @@ function LatestTask() {
                         {index < todayList.length - 1 && (<div className="w-full h-px my-3 bg-black/30"></div>)}
                     </div>
                 ))}
-            </div>
-        </div>
-    );
-}
-
-function ProgressBars() {
-    return (
-        <div className="grid grid-cols-3 mt-[1rem] px-[4rem] py-[2rem] bg-base-100 border-1 rounded-lg border-base-content">
-            <div className="col-span-2 grid grid-cols-3 justify-center items-center text-[25px]">
-                <p className="col-span-3 text-center px-[4rem] mb-[-1rem]">
-                    已完成
-                    <span className="text-[96px] mx-[4rem]">2</span>
-                    項 工作
-                </p>
-                <progress
-                    className="col-span-3 progress text-[#8FE189]"
-                    value="50"
-                    max="100"
-                >
-                </progress>
-            </div>
-            <div
-                className="col-span-1 radial-progress justify-self-center text-[#8FE189] flex flex-col justify-center items-center text-[20px]"
-                style={{
-                    "--value": 20,
-                    "--size": "10rem",
-                } /* as React.CSSProperties */}
-                aria-valuenow={20}
-                role="progressbar"
-            >
-                <span className="text-base-content">2hr</span>
-                <span className="text-base-content">累積時數</span>
             </div>
         </div>
     );
