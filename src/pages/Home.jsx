@@ -12,7 +12,11 @@ function Home() {
     const [todayList, setTodayList] = useState([]);
     // 新增行程
     const handleAddTask = (newTask) => {
-        setTodayList(prev => [...prev, newTask]);
+        try {
+            setTodayList(prev => [...prev, newTask]);
+        } catch (error) {
+            console.error("Error adding task:", error);
+        }
     };
 
     return (
@@ -61,11 +65,15 @@ function TodayList({ todayList, setTodayList }) {
     };
 
     const toggleIsDone = (id) => {
-        setTodayList((prev) =>
-            prev.map((item, index) =>
-                index === id ? { ...item, isDone: !item.isDone } : item
-            )
-        );
+        try {
+            setTodayList(prev =>
+                prev.map((item, index) =>
+                    index === id ? { ...item, isDone: !item.isDone } : item
+                )
+            );
+        } catch (error) {
+            console.error("Error toggling task:", error);
+        }
     };
 
     return (
@@ -184,17 +192,21 @@ function AddTask({ onAddTask }) {
     const handleSubmit = (x) => {   // 送出表單
         x.preventDefault();
         if (!newTask.title || !newTask.startTime || !newTask.endTime) return;
-        // 送出
-        onAddTask(newTask);
-        // 重置表單
-        setNewTask({
-            title: "",
-            startTime: "",
-            endTime: "",
-            note: "",
-            isDone: false,
-            color: "#fff"
-        });
+
+        try {
+            onAddTask(newTask);
+            // 重置表單
+            setNewTask({
+                title: "",
+                startTime: "",
+                endTime: "",
+                note: "",
+                isDone: false,
+                color: "#fff"
+            });
+        } catch (error) {
+            console.error("Error submitting task:", error);
+        }
     };
 
     return (
