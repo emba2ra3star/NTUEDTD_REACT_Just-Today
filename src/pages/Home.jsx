@@ -6,7 +6,19 @@ import { useState } from "react";
 import { Menu, X } from 'lucide-react'; // 可替換成任意 icon library
 
 function Home() {
+    // 漢堡選單開關
     const [menuOpen, setMenuOpen] = useState(false);
+    // 今日行程清單
+    const [todayList, setTodayList] = useState([
+        { title: "工作1", color: "#fff", isDone: true, startTime: "09:00", endTime: "10:00", note: "這是工作1的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
+    ]);
+    // 新增行程
+    const handleAddTask = (newTask) => {
+        setTodayList(prev => [...prev, newTask]);
+    };
+
     return (
         <div className="main_layout">
             <Helmet>
@@ -29,12 +41,12 @@ function Home() {
                     <NavMenu />
                 </div>
 
-                <div className={`${menuOpen?"w-6/7":"w-full"} h-full px-14 pb-10 flex flex-row gap-8`}>
-                    <TodayList />
+                <div className={`${menuOpen ? "w-6/7" : "w-full"} h-full px-14 pb-10 flex flex-row gap-8`}>
+                    <TodayList todayList={todayList} setTodayList={setTodayList} />
                     <div className="flex flex-col">
                         <TimeLine />
                         <div className="flex flex-row gap-8">
-                            <AddTask />
+                            <AddTask onAddTask={handleAddTask} />
                             <Timer />
                         </div>
                     </div>
@@ -46,23 +58,12 @@ function Home() {
 
 export default Home;
 
-function TodayList() {
+function TodayList({ todayList, setTodayList }) {
     const [openId, setOpenId] = useState(null);
     const toggleCard = (id) => {
         setOpenId((prev) => (prev === id ? null : id));
     };
 
-    const [todayList, setTodayList] = useState([
-        { title: "工作1", color: "#fff", isDone: true, startTime: "09:00", endTime: "10:00", note: "這是工作1的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-    ]);
     const toggleIsDone = (id) => {
         setTodayList((prev) =>
             prev.map((item, index) =>
@@ -101,7 +102,7 @@ function TodayList() {
                             </div>
                             {/* 內容 */}
                             <div className="flex flex-col justify-center gap-2">
-                                <h2 className="pl-3 text-base/8 border-l-8">{todayList[0].title}</h2>
+                                <h2 className="mt-1.5 pl-3 text-base/8 border-l-8">{todayList[0].title}</h2>
                                 <div className={`overflow-hidden transition-[max-height] duration-300 easy-in ${openId === index ? "max-h-40" : "max-h-0"}`}>
                                     <div className="text-sm/8 text-black/50">{item.note}</div>
                                 </div>
@@ -170,32 +171,85 @@ function TimeLine() {
     );
 }
 
-function AddTask() {
+function AddTask({ onAddTask }) {
+    const [newTask, setNewTask] = useState({
+        title: "",
+        startTime: "",
+        endTime: "",
+        note: "",
+        isDone: false,
+        color: "#fff"
+    });
+    
+    const handleSubmit = (x) => {   // 送出表單
+        x.preventDefault();
+        if (!newTask.title || !newTask.startTime || !newTask.endTime) return;
+
+        onAddTask(newTask);
+        // 重置表單
+        setNewTask({
+            title: "",
+            startTime: "",
+            endTime: "",
+            note: "",
+            isDone: false,
+            color: "#fff"
+        });
+    };
+
     return (
         <div className="py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+            {/* title */}
             <div className="flex flex-row items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.5 5.2085V19.7918M5.20831 12.5002H19.7916" stroke="#1E1E1E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <h1 className="text-2xl/12 font-bold">新增工作</h1>
             </div>
-            <div className="flex flex-col gap-4">
-                <input type="text" placeholder="工作項目" className="input w-full" />
+            {/* form */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {/* 工作項目 */}
+                <input
+                    type="text"
+                    placeholder="工作項目"
+                    className="input w-full"
+                    value={newTask.title}
+                    onChange={(x) => setNewTask(pref => ({ ...pref, title: x.target.value }))}
+                />
+                {/* 設定時間 */}
                 <div className="flex flex-row gap-4">
                     <div className="min-w-[4rem] flex flex-col">
                         <p>開始時間</p>
-                        <input type="text" placeholder="00:00" className="input" />
+                        <input
+                            type="text"
+                            placeholder="00:00"
+                            className="input"
+                            value={newTask.startTime}
+                            onChange={(x) => setNewTask(pref => ({ ...pref, startTime: x.target.value }))}
+                        />
                     </div>
                     <p className="self-center">~</p>
                     <div className="min-w-[4rem] flex flex-col">
                         <p>結束時間</p>
-                        <input type="text" placeholder="00:00" className="input" />
+                        <input
+                            type="text"
+                            placeholder="00:00"
+                            className="input"
+                            value={newTask.endTime}
+                            onChange={(x) => setNewTask(pref => ({ ...pref, endTime: x.target.value }))}
+                        />
                     </div>
                     <p className="self-end text-sm text-black/50">1h</p>
                 </div>
-                <textarea className="textarea w-full" placeholder="備註"></textarea>
-                <button className="btn btn-neutral">新增工作</button>
-            </div>
+                {/* 備註 */}
+                <textarea
+                    className="textarea w-full"
+                    placeholder="備註"
+                    value={newTask.note}
+                    onChange={(x) => setNewTask(pref => ({ ...pref, note: x.target.value }))}
+                />
+                <button type="submit" className="btn btn-neutral">新增工作</button>
+            </form>
         </div>
     );
 }
