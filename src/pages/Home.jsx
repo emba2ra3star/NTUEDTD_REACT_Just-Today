@@ -9,11 +9,7 @@ function Home() {
     // 漢堡選單開關
     const [menuOpen, setMenuOpen] = useState(false);
     // 今日行程清單
-    const [todayList, setTodayList] = useState([
-        { title: "工作1", color: "#fff", isDone: true, startTime: "09:00", endTime: "10:00", note: "這是工作1的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-        { title: "工作2", color: "#fff", isDone: false, startTime: "09:00", endTime: "10:00", note: "這是工作2的備註" },
-    ]);
+    const [todayList, setTodayList] = useState([]);
     // 新增行程
     const handleAddTask = (newTask) => {
         setTodayList(prev => [...prev, newTask]);
@@ -180,11 +176,11 @@ function AddTask({ onAddTask }) {
         isDone: false,
         color: "#fff"
     });
-    
+
     const handleSubmit = (x) => {   // 送出表單
         x.preventDefault();
         if (!newTask.title || !newTask.startTime || !newTask.endTime) return;
-
+        // 送出
         onAddTask(newTask);
         // 重置表單
         setNewTask({
@@ -217,29 +213,27 @@ function AddTask({ onAddTask }) {
                     onChange={(x) => setNewTask(pref => ({ ...pref, title: x.target.value }))}
                 />
                 {/* 設定時間 */}
-                <div className="flex flex-row gap-4">
-                    <div className="min-w-[4rem] flex flex-col">
+                <div className="flex flex-row gap-2">
+                    <div className="flex flex-col">
                         <p>開始時間</p>
                         <input
-                            type="text"
-                            placeholder="00:00"
-                            className="input"
+                            type="time"
+                            className="input pr-7"
                             value={newTask.startTime}
                             onChange={(x) => setNewTask(pref => ({ ...pref, startTime: x.target.value }))}
                         />
                     </div>
                     <p className="self-center">~</p>
-                    <div className="min-w-[4rem] flex flex-col">
+                    <div className="flex flex-col">
                         <p>結束時間</p>
                         <input
-                            type="text"
-                            placeholder="00:00"
-                            className="input"
+                            type="time"
+                            className="input pr-7"
                             value={newTask.endTime}
                             onChange={(x) => setNewTask(pref => ({ ...pref, endTime: x.target.value }))}
                         />
                     </div>
-                    <p className="self-end text-sm text-black/50">1h</p>
+                    {/* <p className="self-end text-sm text-black/50">0h</p> */}
                 </div>
                 {/* 備註 */}
                 <textarea
