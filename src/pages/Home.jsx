@@ -175,7 +175,7 @@ function TimeLine() {
                 </div>
                 {/* flags */}
                 {todayList && todayList.filter(task => !task.isDone).map((task, index) => (
-                    <FlagMarker key={index} time={task.endTime} />  // 以結束時間為標記
+                    <FlagMarker key={index} time={task.startTime} />  // 以開始時間為標記
                 ))}
                 {/* Line */}
                 <div className="absolute top-[50%] w-full h-2 bg-black rounded-full"></div>
