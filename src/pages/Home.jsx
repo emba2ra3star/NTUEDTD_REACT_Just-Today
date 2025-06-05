@@ -5,15 +5,19 @@ import NavMenu from "../components/NavMenu";
 import { useState } from "react";
 import { Menu, X } from 'lucide-react'; // 可替換成任意 icon library
 
+import { useSelector, useDispatch } from "react-redux";
+import { addTask, toggleTaskDone } from "../redux/todayListSlice";
+
 function Home() {
     // 漢堡選單開關
     const [menuOpen, setMenuOpen] = useState(false);
-    // 今日行程清單
-    const [todayList, setTodayList] = useState([]);
+    // Redux
+    const dispatch = useDispatch();
+    const todayList = useSelector(state => state.todayList);
     // 新增行程
     const handleAddTask = (newTask) => {
         try {
-            setTodayList(prev => [...prev, newTask]);
+            dispatch(addTask(newTask));
         } catch (error) {
             console.error("Error adding task:", error);
         }
@@ -40,11 +44,11 @@ function Home() {
                 >
                     <NavMenu />
                 </div>
-
+                {/* 主要內容區域 */}
                 <div className={`${menuOpen ? "w-6/7" : "w-full"} h-full px-14 pb-10 flex flex-row gap-8`}>
-                    <TodayList todayList={todayList} setTodayList={setTodayList} />
+                    <TodayList />
                     <div className="flex flex-col">
-                        <TimeLine todayList={todayList} />
+                        <TimeLine />
                         <div className="flex flex-row gap-8">
                             <AddTask onAddTask={handleAddTask} />
                             <Timer />
@@ -58,24 +62,24 @@ function Home() {
 
 export default Home;
 
-function TodayList({ todayList, setTodayList }) {
+function TodayList() {
+    // 展開卡片的狀態
     const [openId, setOpenId] = useState(null);
     const toggleCard = (id) => {
         setOpenId((prev) => (prev === id ? null : id));
     };
-
+    // Redux
+    const dispatch = useDispatch();
+    const todayList = useSelector(state => state.todayList);
+    // 切換任務完成狀態
     const toggleIsDone = (id) => {
         try {
-            setTodayList(prev =>
-                prev.map((item, index) =>
-                    index === id ? { ...item, isDone: !item.isDone } : item
-                )
-            );
+            dispatch(toggleTaskDone(id));
         } catch (error) {
             console.error("Error toggling task:", error);
         }
-    };
-
+    }
+    
     return (
         <div className="h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
             {/* title */}
@@ -86,7 +90,6 @@ function TodayList({ todayList, setTodayList }) {
 
                 <h1 className="text-2xl/12 font-bold">今日行程</h1>
             </div>
-
             {/* list */}
             <div className="flex flex-col overflow-y-auto">
                 {todayList.map((item, index) => (
@@ -106,7 +109,7 @@ function TodayList({ todayList, setTodayList }) {
                             </div>
                             {/* 內容 */}
                             <div className="flex flex-col justify-center gap-2">
-                                <h2 className="mt-1.5 pl-3 text-base/8 border-l-8">{todayList[0].title}</h2>
+                                <h2 className="mt-1.5 pl-3 text-base/8 border-l-8">{item.title}</h2>
                                 <div className={`overflow-hidden transition-[max-height] duration-300 easy-in ${openId === index ? "max-h-40" : "max-h-0"}`}>
                                     <div className="text-sm/8 text-black/50">{item.note}</div>
                                 </div>
@@ -122,6 +125,7 @@ function TodayList({ todayList, setTodayList }) {
                                 />
                             </div>
                         </div>
+                        {/* 分隔線 */}
                         {index < todayList.length - 1 && (<div className="w-full h-px my-3 bg-black/30"></div>)}
                     </div>
                 ))}
@@ -130,7 +134,9 @@ function TodayList({ todayList, setTodayList }) {
     );
 }
 
-function TimeLine({ todayList }) {
+function TimeLine() {
+    // Redux
+    const todayList = useSelector(state => state.todayList);
     const FlagMarker = ({ time }) => (
         <section className="flex flex-col items-center z-1">
             <svg width="38" height="50" viewBox="-29 0 67 50" fill="none" xmlns="http://www.w3.org/2000/svg">
