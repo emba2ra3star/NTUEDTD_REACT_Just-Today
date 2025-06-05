@@ -40,7 +40,7 @@ function Home() {
                 <div className={`${menuOpen ? "w-6/7" : "w-full"} h-full px-14 pb-10 flex flex-row gap-8`}>
                     <TodayList todayList={todayList} setTodayList={setTodayList} />
                     <div className="flex flex-col">
-                        <TimeLine />
+                        <TimeLine todayList={todayList} />
                         <div className="flex flex-row gap-8">
                             <AddTask onAddTask={handleAddTask} />
                             <Timer />
@@ -122,7 +122,17 @@ function TodayList({ todayList, setTodayList }) {
     );
 }
 
-function TimeLine() {
+function TimeLine({ todayList }) {
+    const FlagMarker = ({ time }) => (
+        <section className="flex flex-col items-center z-1">
+            <svg width="38" height="50" viewBox="-29 0 67 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 36.5L0 0L38 20.8791L3.5 35V50L0 50L0 36.5Z" fill="black" />
+                <path d="M0 36.5L0 0L38 20.8791L3.5 35L0 36.5Z" fill="#D9D9D9" />
+            </svg>
+            <p>{time}</p>
+        </section>
+    );
+
     return (
         <div className="pb-8 px-10 flex flex-col items-start gap-4 text-base">
             {/* title */}
@@ -140,7 +150,7 @@ function TimeLine() {
                 <h1 className="text-2xl/12 font-bold">時間軸</h1>
             </div>
 
-            <div className="relative mt-4 w-full grid grid-cols-12 gap-4">
+            <div className="relative mt-4 h-18 w-full grid grid-cols-12">
                 {/* boat */}
                 <div className="absolute top-[-50%] flex flex-col items-center">
                     <p>08:00</p>
@@ -150,19 +160,13 @@ function TimeLine() {
                         <path d="M49 18H0L26.0312 46H49V18Z" fill="#D9D9D9" />
                     </svg>
                 </div>
-                {/* flag */}
-                <section className="flex flex-col items-center z-1">
-                    <svg width="38" height="50" viewBox="-29 0 67 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 36.5L0 0L38 20.8791L3.5 35V50L0 50L0 36.5Z" fill="black" />
-                        <path d="M0 36.5L0 0L38 20.8791L3.5 35L0 36.5Z" fill="#D9D9D9" />
-                    </svg>
-                    <p>09:00</p>
-                </section>
+                {/* flags */}
+                {todayList && todayList.filter(task => !task.isDone).map((task, index) => (
+                    <FlagMarker key={index} time={task.endTime} />  // 以結束時間為標記
+                ))}
                 {/* Line */}
                 <div className="absolute top-[50%] w-full h-2 bg-black rounded-full"></div>
-
             </div>
-
         </div>
     );
 }
