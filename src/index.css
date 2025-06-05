@@ -59,3 +59,39 @@
 body {
     margin: 0;
 }
+
+/* color */
+.header_bg {
+    color: #fff;
+    background-color: #4D5C92;
+}
+
+.navbar_choice {
+    color: black;
+    background-color: #DCE1FF;
+}
+
+.card{
+  color: black;
+  background-color: #fff;
+  border-color: #4D5C92;
+}
+
+.btn1{
+  color: #fff;
+  background-color: #4D5C92;
+}
+
+.btn2{
+  color: #4D5C92;
+  background-color: #fff;
+  border-color: #4D5C92;
+}
+
+.chart1{
+  background-color: #004D61;
+}
+
+.chart2{
+  background-color: #F8D6FF;
+}

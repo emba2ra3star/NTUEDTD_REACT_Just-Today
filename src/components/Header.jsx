@@ -24,10 +24,9 @@ function Header({ title }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 bg-white shadow transition-transform duration-300 ${isHidden ? "-translate-y-full" : "translate-y-0"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 header_bg transition-transform duration-300 ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
     >
-      <div className='py-4 px-14 text-black flex justify-between items-center'>
+      <div className='py-4 px-14 flex justify-between items-center'>
         <Logo />
 
         <div className='flex items-center gap-4'>

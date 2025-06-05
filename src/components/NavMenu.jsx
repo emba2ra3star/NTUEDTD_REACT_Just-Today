@@ -19,7 +19,7 @@ function NavMenu() {
                         to={item.path}
                         key={index}
                         id={item.id}
-                        className={`pl-[92px] py-2 pr-4 rounded-r-lg w-full ${pageTitle.pathname === item.path ? "bg-gray-400" : "bg-white"} hover:bg-gray-300 text-2xl`}
+                        className={`pl-[92px] py-2 pr-4 rounded-r-lg w-full ${pageTitle.pathname === item.path ? "navbar_choice" : "bg-white"} hover:bg-gray-200 text-2xl`}
                     >
                         {item.name}
                     </Link>
@@ -32,7 +32,7 @@ function NavMenu() {
                         to={item.path}
                         key={index}
                         id={item.id}
-                        className={`pl-[92px] py-2 pr-4 rounded-r-lg w-full ${pageTitle.pathname === item.path ? "bg-gray-400" : "bg-white"} hover:bg-gray-300 text-2xl`}
+                        className={`pl-[92px] py-2 pr-4 rounded-r-lg w-full ${pageTitle.pathname === item.path ? "navbar_choice" : "bg-white"} hover:bg-gray-200 text-2xl`}
                     >
                         {item.name}
                     </Link>
