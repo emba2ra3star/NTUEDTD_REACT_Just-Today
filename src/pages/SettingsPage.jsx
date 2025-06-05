@@ -4,8 +4,10 @@ import { Helmet } from "react-helmet-async";
 import { UserCircle, RefreshCcw, ChevronRight } from "lucide-react";
 
 export default function SettingsPage() {
+
+  
   return (
-    <div className="main_layout flex flex-col bg-white text-black">
+    <div className="main_layout flex flex-col bg-white text-black ">
       <Helmet>
         <title>設定(未登入)</title>
       </Helmet>

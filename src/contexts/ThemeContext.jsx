@@ -1,9 +1,14 @@
+// src/contexts/ThemeContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "淺色");
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(() => {
+    // 初次載入時從 localStorage 讀取
+    const stored = localStorage.getItem("theme");
+    return stored === "深色" ? "深色" : "淺色";
+  });
 
   useEffect(() => {
     const isDark = theme === "深色";
@@ -16,6 +21,8 @@ export const ThemeProvider = ({ children }) => {
       {children}
     </ThemeContext.Provider>
   );
-};
+}
 
-export const useTheme = () => useContext(ThemeContext);
+export function useTheme() {
+  return useContext(ThemeContext);
+}
