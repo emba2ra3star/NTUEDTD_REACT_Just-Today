@@ -33,7 +33,7 @@ export default Pomodoro;
 function Chart() {
     const todayList = useSelector(state => state.todayList);
     return (
-        <div className="h-full w-[40%] py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="h-full w-[40%] py-8 px-10 flex flex-col gap-4 border-2 rounded-[50px] border-black card">
             {/* title */}
             <div className="flex items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,13 +53,13 @@ function Chart() {
             <div className="h-full flex flex-col justify-between">
                 {/* 本週工作時數直條圖 */}
                 <div className="h-[30%] grid grid-cols-7">
-                    <div className="h-full w-2 bg-black/20 rounded-t-full justify-self-center"></div>
-                    <div className="h-full w-2 bg-black/20 rounded-t-full justify-self-center"></div>
-                    <div className="h-full w-2 bg-black/20 rounded-t-full justify-self-center"></div>
-                    <div className="h-full w-2 bg-black/20 rounded-t-full justify-self-center"></div>
-                    <div className="h-full w-2 bg-black/20 rounded-t-full justify-self-center"></div>
-                    <div className="h-full w-2 bg-black/20 rounded-t-full justify-self-center"></div>
-                    <div className="h-full w-2 bg-black rounded-t-full justify-self-center"></div>
+                    <div className="h-full w-2 chart2 rounded-t-full justify-self-center"></div>
+                    <div className="h-full w-2 chart2 rounded-t-full justify-self-center"></div>
+                    <div className="h-full w-2 chart2 rounded-t-full justify-self-center"></div>
+                    <div className="h-full w-2 chart2 rounded-t-full justify-self-center"></div>
+                    <div className="h-full w-2 chart2 rounded-t-full justify-self-center"></div>
+                    <div className="h-full w-2 chart2 rounded-t-full justify-self-center"></div>
+                    <div className="h-full w-2 chart1 rounded-t-full justify-self-center"></div>
                 </div>
 
                 {/* 今日工作時數 */}
@@ -74,7 +74,7 @@ function Chart() {
 
                 {/* 今日工作完成度圓餅圖 */}
                 <div className="h-[30%] flex justify-center items-center">
-                    <div className="h-full aspect-square flex items-center justify-center border-4 border-black/10 rounded-full">
+                    <div className="h-full aspect-square flex items-center justify-center chart2 rounded-full">
                         <p className="text-5xl/12 font-bold">{todayList.filter(task => task.isDone).length}/{todayList.length}</p>
                     </div>
                 </div>
@@ -177,7 +177,7 @@ function PomodoroSetting() {
     };
 
     return (
-        <div className="w-full py-8 px-10 flex flex-col gap-4 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="w-full py-8 px-10 flex flex-col gap-4 border-2 rounded-[50px] card">
             {/* title */}
             <div className="flex flex-row justify-between">
                 <div className="flex items-center gap-1">
@@ -229,7 +229,7 @@ function PomodoroSetting() {
                         {/* 增減按鈕 */}
                         <div className="flex flex-col justify-between items-center gap-2">
                             <button 
-                                className="btn btn-square bg-black/10"
+                                className="btn btn-square bg-[#FFDEAC]"
                                 onClick={() => adjustTime(60)}
                                 disabled={isRunning}
                             >
@@ -238,7 +238,7 @@ function PomodoroSetting() {
                                 </svg>
                             </button>
                             <button 
-                                className="btn btn-square bg-black/10"
+                                className="btn btn-square bg-[#FFDEAC]"
                                 onClick={() => adjustTime(-60)}
                                 disabled={isRunning}
                             >
@@ -257,29 +257,29 @@ function PomodoroSetting() {
             {/* 按鈕 */}
             <div className="mt-8 flex flex-row justify-between items-center">
                 <div className="w-1/3 flex justify-center">
-                    <button className="btn bg-white border-black">
+                    <button className="btn btn2">
                         <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.94444 2H3.27778C2.80628 2 2.3541 2.1873 2.0207 2.5207C1.6873 2.8541 1.5 3.30628 1.5 3.77778V6.44444M17.5 6.44444V3.77778C17.5 3.30628 17.3127 2.8541 16.9793 2.5207C16.6459 2.1873 16.1937 2 15.7222 2H13.0556M13.0556 18H15.7222C16.1937 18 16.6459 17.8127 16.9793 17.4793C17.3127 17.1459 17.5 16.6937 17.5 16.2222V13.5556M1.5 13.5556V16.2222C1.5 16.6937 1.6873 17.1459 2.0207 17.4793C2.3541 17.8127 2.80628 18 3.27778 18H5.94444" stroke="#757575" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M5.94444 2H3.27778C2.80628 2 2.3541 2.1873 2.0207 2.5207C1.6873 2.8541 1.5 3.30628 1.5 3.77778V6.44444M17.5 6.44444V3.77778C17.5 3.30628 17.3127 2.8541 16.9793 2.5207C16.6459 2.1873 16.1937 2 15.7222 2H13.0556M13.0556 18H15.7222C16.1937 18 16.6459 17.8127 16.9793 17.4793C17.3127 17.1459 17.5 16.6937 17.5 16.2222V13.5556M1.5 13.5556V16.2222C1.5 16.6937 1.6873 17.1459 2.0207 17.4793C2.3541 17.8127 2.80628 18 3.27778 18H5.94444" stroke="#4D5C92" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <p>全螢幕</p>
                     </button>
                 </div>
                 <div className="w-1/3 flex justify-center">
                     <button 
-                        className={`btn ${isRunning ? 'bg-warning' : 'bg-neutral'} text-white`}
+                        className={`btn ${isRunning ? 'bg-warning' : 'btn1'} text-white`}
                         onClick={toggleTimer}
                     >
                         {isRunning ? (
                             <>
                                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 4H4V16H6V4ZM12 4H10V16H12V4Z" stroke="#B3B3B3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M6 4H4V16H6V4ZM12 4H10V16H12V4Z" stroke="#4D5C92" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                                 <p>暫停</p>
                             </>
                         ) : (
                             <>
                                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2.5 2L14.5 10L2.5 18V2Z" stroke="#B3B3B3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2.5 2L14.5 10L2.5 18V2Z" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                                 <p>開始專注</p>
                             </>
@@ -288,11 +288,11 @@ function PomodoroSetting() {
                 </div>
                 <div className="w-1/3 flex justify-center">
                     <button 
-                        className="btn bg-white border-black"
+                        className="btn btn2"
                         onClick={resetTimer}
                     >
                         <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16.1744 2L11.1744 2M11.1744 2V6.80034M11.1744 2L14.8078 5.71226C15.9566 6.81707 16.7003 8.2504 16.9268 9.79629C17.1534 11.3422 16.8505 12.9169 16.0638 14.2831C15.2771 15.6494 14.0492 16.7332 12.5652 17.3712C11.0811 18.0092 9.42132 18.1669 7.83581 17.8205C6.2503 17.4741 4.825 16.6424 3.77466 15.4507C2.72431 14.2589 2.10583 12.7718 2.0124 11.2132C1.91896 9.65469 2.35564 8.10921 3.25664 6.80966C4.15764 5.51012 5.47414 4.52689 7.00778 4.00814" stroke="#757575" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M16.1744 2L11.1744 2M11.1744 2V6.80034M11.1744 2L14.8078 5.71226C15.9566 6.81707 16.7003 8.2504 16.9268 9.79629C17.1534 11.3422 16.8505 12.9169 16.0638 14.2831C15.2771 15.6494 14.0492 16.7332 12.5652 17.3712C11.0811 18.0092 9.42132 18.1669 7.83581 17.8205C6.2503 17.4741 4.825 16.6424 3.77466 15.4507C2.72431 14.2589 2.10583 12.7718 2.0124 11.2132C1.91896 9.65469 2.35564 8.10921 3.25664 6.80966C4.15764 5.51012 5.47414 4.52689 7.00778 4.00814" stroke="#4D5C92" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <p>重新計時</p>
                     </button>
@@ -312,7 +312,7 @@ function LatestTask() {
     const todayList = useSelector(state => state.todayList);
 
     return (
-        <div className="h-full flex flex-col gap-4 py-8 px-10 flex-1 border-1 rounded-[50px] border-black bg-base-100">
+        <div className="h-full flex flex-col gap-4 py-8 px-10 flex-1 border-2 rounded-[50px] card">
             {/* title */}
             <div className="flex items-center gap-1">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -340,7 +340,7 @@ function LatestTask() {
                             </div>
                             {/* 內容 */}
                             <div className="flex flex-col justify-center gap-2">
-                                <h2 className="pl-3 text-base/8 border-l-8">{item.title}</h2>
+                                <h2 className="mt-1.5 pl-3 text-base/8 border-l-8 border-[#FFCA73]">{item.title}</h2>
                                 <div className={`overflow-hidden transition-[max-height] duration-300 easy-in ${openId === index ? "max-h-40" : "max-h-0"}`}>
                                     <div className="text-sm/8 text-black/50">{item.note}</div>
                                 </div>
