@@ -78,7 +78,7 @@ function TodayList() {
             console.error("Error toggling task:", error);
         }
     }
-    
+
     return (
         <div className="h-full w-[50%] py-8 px-10 flex flex-col gap-4 border-2 rounded-[50px] card">
             {/* title */}
@@ -91,7 +91,11 @@ function TodayList() {
             </div>
             {/* list */}
             <div className="flex flex-col overflow-y-auto">
-                {todayList.map((item, index) => (
+                {todayList.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center h-full text-black/50">
+                        <p>[+] 右側新增工作</p>
+                    </div>
+                ) : todayList.map((item, index) => (
                     <div
                         key={index}
                         className="flex flex-col"
@@ -331,13 +335,13 @@ function Timer() {
             </div>
             {/* 按鈕 */}
             <div className="flex gap-2">
-                <button 
+                <button
                     className={`btn flex-1 ${isRunning ? 'btn-warning' : 'btn1'} rounded-full`}
                     onClick={toggleTimer}
                 >
                     {isRunning ? '暫停' : '開始專注'}
                 </button>
-                <button 
+                <button
                     className="btn btn2 rounded-full"
                     onClick={resetTimer}
                 >
