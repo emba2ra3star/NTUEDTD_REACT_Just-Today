@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import NavMenu from "../components/NavMenu";
 import Header from "../components/Header";
 import { Helmet } from "react-helmet-async";
 import { Info, Smile, MessageSquare } from "lucide-react";
 
 const AboutPage: React.FC = () => {
+  const [rating, setRating] = useState(0); // 新增 state 管理評分
+
   return (
     <div className="main_layout flex flex-col bg-white text-black">
       <Helmet>
         <title>關於我們(未登入)</title>
       </Helmet>
 
-      <Header />
 
       <div className="flex flex-1 pt-[5rem]">
         {/* 左側 NavMenu */}
@@ -70,11 +71,22 @@ const AboutPage: React.FC = () => {
 
             <div className="flex flex-col items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-gray-200" />
-              <div className="flex gap-1 text-yellow-400 text-xl">
-                {"★★★★★".split("").map((_, i) => (
-                  <span key={i}>☆</span>
+
+              {/* 星星評分區 */}
+              <div className="flex gap-1 text-xl">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    onClick={() => setRating(star)}
+                    className={`cursor-pointer ${
+                      star <= rating ? "text-yellow-400" : "text-gray-300"
+                    }`}
+                  >
+                    ★
+                  </span>
                 ))}
               </div>
+
               <div className="w-full p-3 border border-dashed text-center text-sm text-gray-500 rounded-md min-h-[100px]">
                 登入帳戶即可將向我們傳送建議
               </div>
