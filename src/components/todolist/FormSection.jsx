@@ -81,7 +81,7 @@ function FormSection() {
             className="input input-bordered flex-grow"
             placeholder="輸入標籤名稱"
           />
-          <button type="button" onClick={handleAddTag} className="btn btn-outline">
+          <button type="button" onClick={handleAddTag} className="btn btn2 rounded-full">
             新增
           </button>
         </div>
@@ -93,12 +93,12 @@ function FormSection() {
       </div>
 
       <div className="flex justify-between pt-4">
-        <button type="button" onClick={handleClear} className="btn w-34 rounded-full">
+        <button type="button" onClick={handleClear} className="btn w-54 rounded-full ">
           清除
         </button>
         <button
             type="button"
-            className="btn w-64 rounded-full bg-black text-white"
+            className="btn w-64 rounded-full bg-[#4D5C92] text-white"
             onClick={() => {
               setTasks([
                 ...tasks,
