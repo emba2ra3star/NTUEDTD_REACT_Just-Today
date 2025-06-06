@@ -12,7 +12,6 @@ export default function SettingsPage() {
         <title>設定(未登入)</title>
       </Helmet>
 
-      {/* #這個是有特別需要嗎？？ */}
       <Header />
 
       <div className="flex flex-1 pt-[5rem]">
@@ -21,7 +20,7 @@ export default function SettingsPage() {
 
         {/* 主區塊：左右兩卡片 */}
         <div className="flex-1 p-10 flex gap-8">
-          <div className="flex-1 rounded-3xl border p-6 shadow">
+          <div className="flex-1 rounded-3xl border-2 border-[#4D5C92] p-6 shadow">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
               <UserCircle size={20} />
               基本設定
@@ -72,7 +71,7 @@ export default function SettingsPage() {
           </div>
 
           {/* 右卡：帳戶設定 */}
-          <div className="w-[300px] rounded-3xl border p-6 shadow">
+          <div className="w-[300px] rounded-3xl border-2 border-[#4D5C92] p-6 shadow">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
               <UserCircle size={20} />
               帳戶設定
@@ -86,12 +85,12 @@ export default function SettingsPage() {
                 登入帳戶即可將資料儲存至雲端
               </div>
 
-              <button className="w-full bg-black text-white py-2 rounded-md flex justify-center items-center gap-2 mt-2">
+              <button className="w-full btn btn1 rounded-full flex justify-center items-center gap-2 mt-2">
                 登入帳戶 <ChevronRight size={16} />
               </button>
 
-              <button className="w-full border py-2 rounded-md text-sm">
-                註冊 #
+              <button className="w-full btn btn2 rounded-full text-sm">
+                註冊
               </button>
             </div>
           </div>

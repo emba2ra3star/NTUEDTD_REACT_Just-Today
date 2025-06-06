@@ -21,6 +21,17 @@
   --color-primary: #6366F2;
 }
 
+@layer components {
+  .btn1 {
+    @apply bg-[#4D5C92] text-white hover:opacity-90 transition;
+  }
+
+  .btn2 {
+    @apply border border-[#4D5C92] text-[#4D5C92] hover:bg-[#4D5C92] hover:text-white transition;
+  }
+}
+
+
 /* [data-theme="light"] {
   .footer-bg {
     background-color: #3E3F92;
