@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import NavMenu from "../components/NavMenu";
-import Header from "../components/Header";
 import { Helmet } from "react-helmet-async";
 import { Info, Smile, MessageSquare } from "lucide-react";
 
