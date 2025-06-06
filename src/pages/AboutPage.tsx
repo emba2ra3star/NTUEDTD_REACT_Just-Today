@@ -47,7 +47,7 @@ const AboutPage: React.FC = () => {
               </h2>
               <div className="space-y-4 flex-1 overflow-auto">
                 {[
-                  { name: "陳嘉欣", note: "前端開發 / 視覺設計" },
+                  { name: "陳嘉馨", note: "前端開發 / 視覺設計" },
                   { name: "金蔓均", note: "前端開發 / 功能設計" }
                 ].map((member, index) => (
                   <div key={index} className="flex items-center gap-4">
